@@ -1,9 +1,14 @@
+import Navbar from "./components/Navbar";
+import { BrowserRouter } from "react-router-dom";
 
 
 function App() {
   return (
     <div className="App">
-      <h1 className='text-3xl text-center font-bold underline'>Hello World!</h1>
+      <BrowserRouter>
+        <Navbar />
+        <div className="bg-blue-500 w-full h-screen"></div>
+      </BrowserRouter>
     </div>
   );
 }
