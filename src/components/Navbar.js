@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-    const [isSigned, setIsSigned] = useState(true);
+    const [isSigned, setIsSigned] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
 
