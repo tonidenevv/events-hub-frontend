@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Navbar = () => {
     const [isSigned, setIsSigned] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
+
+    const { user } = useContext(AuthContext);
 
     const toggleDropdown = () => {
         setShowDropdown(prev => !prev);
@@ -36,17 +39,19 @@ const Navbar = () => {
                     <div className="hidden md:flex ml-20 items-center gap-14">
                         <Link to="/" className="text-white font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-900 rounded-lg">Home</Link>
                         <Link to="/events" className="text-white font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-900 rounded-lg">Events</Link>
-                        <Link to="/create" className="text-white font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-900 rounded-lg">Create</Link>
-                        {!isSigned &&
-                            <>
+                        {user
+                            ? <>
+                                <Link to="/create" className="text-white font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-900 rounded-lg">Create</Link>
+                            </>
+                            : <>
                                 <Link to="/login" className="text-white font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-900 rounded-lg">Login</Link>
                                 <Link to="/register" className="text-white font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-900 rounded-lg">Register</Link>
                             </>
                         }
                     </div>
-                    {isSigned ?
+                    {user ?
                         <div className="flex ml-auto lg:mr-10 relative items-center">
-                            <img onClick={toggleDropdown} ref={dropdownRef} src="/male.png" className="w-16 mr-8 cursor-pointer" alt="Person" />
+                            <img onClick={toggleDropdown} ref={dropdownRef} src={user.avatarUrl ? user.avatarUrl : (user.gender === 'male' ? `/male.png` : '/female.png')} className="w-12 h-12 mr-8 cursor-pointer rounded-full" alt="Person" />
                             <div className={`absolute right-0 w-32 lg:h-28 h-36 flex flex-col justify-evenly top-full mt-4 rounded-md py-2 px-4 bg-slate-800 shadow-md ${!showDropdown && 'hidden'}`}>
                                 <Link to="/events" className="lg:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Events</Link>
                                 <Link to="/create" className="lg:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Create</Link>

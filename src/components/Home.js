@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
     return (
         <div className="bg-white w-full items-center flex flex-col">
-            <h1 className="lg:text-7xl text-3xl font-bold text-center font-body pt-12 lg:pt-18">The Home To All Events</h1>
+            <h1 className="lg:text-7xl text-3xl font-bold text-center font-body pt-6 lg:pt-18">The Home To All Events</h1>
             <p className="lg:text-4xl text-xl text-center font-bold font-body pt-8">Find all the events you've dreamt about!</p>
             <Link to="/events" className="lg:mt-14 mt-10 bg-slate-700 lg:hover:text-3xl text-center lg:hover:bg-slate-800 lg:text-2xl text-white rounded-full p-4 font-body ease-in-out duration-200 font-semibold">View All Events</Link>
             <div className="grid lg:gap-28 lg:mt-24 items-start mt-8 gap-4 md:gap-12 lg:grid-cols-3 font-bold lg:text-3xl">
