@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import Logout from '../Logout/Logout';
 
 const Navbar = () => {
-    const [isSigned, setIsSigned] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -57,7 +57,7 @@ const Navbar = () => {
                                 <Link to="/create" className="lg:hidden md:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Create</Link>
                                 <Link to="/profile" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">My Profile</Link>
                                 <Link to="/settings" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Settings</Link>
-                                <Link to="/signout" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Sign Out</Link>
+                                <Link to="/logout" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Sign Out</Link>
                             </div>
                         </div>
                         : <div className="flex ml-auto lg:hidden md:hidden relative items-center">

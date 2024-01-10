@@ -18,4 +18,14 @@ export const login = (data) => {
         body: JSON.stringify(data),
     })
         .then(res => res.json());
+};
+
+export const logout = (token) => {
+    return fetch(`${BASE_URL}/logout`, {
+        method: 'GET',
+        headers: {
+            Authorize: token,
+        },
+    })
+        .then(res => res.json());
 }
