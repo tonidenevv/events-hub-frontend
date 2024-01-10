@@ -8,3 +8,14 @@ export const register = (data) => {
     })
         .then(res => res.json())
 };
+
+export const login = (data) => {
+    return fetch(`${BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then(res => res.json());
+}

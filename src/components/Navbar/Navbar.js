@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Navbar = () => {
     const [isSigned, setIsSigned] = useState(false);
@@ -53,8 +53,8 @@ const Navbar = () => {
                         <div className="flex ml-auto lg:mr-10 relative items-center">
                             <img onClick={toggleDropdown} ref={dropdownRef} src={user.avatarUrl ? user.avatarUrl : (user.gender === 'male' ? `/male.png` : '/female.png')} className="w-12 h-12 mr-8 cursor-pointer rounded-full" alt="Person" />
                             <div className={`absolute right-0 w-32 lg:h-28 h-36 flex flex-col justify-evenly top-full mt-4 rounded-md py-2 px-4 bg-slate-800 shadow-md ${!showDropdown && 'hidden'}`}>
-                                <Link to="/events" className="lg:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Events</Link>
-                                <Link to="/create" className="lg:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Create</Link>
+                                <Link to="/events" className="lg:hidden md:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Events</Link>
+                                <Link to="/create" className="lg:hidden md:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Create</Link>
                                 <Link to="/profile" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">My Profile</Link>
                                 <Link to="/settings" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Settings</Link>
                                 <Link to="/signout" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Sign Out</Link>

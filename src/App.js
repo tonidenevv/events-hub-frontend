@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthContext } from "./contexts/AuthContext";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Navbar from "./components/Navbar";
-import Register from "./components/Register";
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import Navbar from "./components/Navbar/Navbar";
+import Register from "./components/Register/Register";
 
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
-  const handleRegister = (data) => {
+  const handleAuth = (data) => {
     localStorage.setItem('user', JSON.stringify(data));
     setUser(data);
   };
@@ -22,8 +22,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register handleRegister={handleRegister} />} />
+            <Route path="/login" element={<Login handleAuth={handleAuth} />} />
+            <Route path="/register" element={<Register handleAuth={handleAuth} />} />
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>
