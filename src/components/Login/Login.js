@@ -39,7 +39,8 @@ const Login = ({
                         handleAuth(res);
                         navigate('/');
                     }
-                });
+                })
+                .catch(err => console.log(err));
         }
     };
 

@@ -6,6 +6,7 @@ import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Register from "./components/Register/Register";
 import Logout from "./components/Logout/Logout";
+import Settings from "./components/Settings/Settings";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/login" element={<Login handleAuth={handleAuth} />} />
             <Route path="/register" element={<Register handleAuth={handleAuth} />} />
             <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>
