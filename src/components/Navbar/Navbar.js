@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import Logout from '../Logout/Logout';
 
 const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
