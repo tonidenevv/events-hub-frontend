@@ -29,3 +29,15 @@ export const logout = (token) => {
     })
         .then(res => res.json());
 }
+
+export const changePassword = (token, data) => {
+    return fetch(`${BASE_URL}/change-password`, {
+        method: 'POST',
+        headers: {
+            Authorize: token,
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then(res => res.json());
+}
