@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from '../../services/authService';
 import Spinner from "../Spinner/Spinner";
 import hasErrors from "../../helpers/validators";
+import { ToastContext } from "../../contexts/ToastContext";
 
 const Register = ({
     handleAuth,
@@ -25,6 +26,8 @@ const Register = ({
     const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    const { showToast } = useContext(ToastContext);
 
     const hasAnyErrors = (Object.values(errors).some(x => x === true) || Object.values(errors).length < 5);
 
@@ -79,10 +82,16 @@ const Register = ({
                 } else {
                     setServerErrors({});
                     handleAuth(res);
+                    showToast('Successfully registered.')
                     navigate('/');
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setIsLoading(false);
+                console.log(err);
+                showToast('There was an error processing your request. Please try again later.', true);
+                navigate('/');
+            });
     };
 
     return (

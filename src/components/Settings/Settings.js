@@ -6,6 +6,7 @@ import Spinner from "../Spinner/Spinner";
 import WarningPage from "./WarningPage/WarningPage";
 import MainPage from "./MainPage/MainPage";
 import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
+import { ToastContext } from "../../contexts/ToastContext";
 
 const Settings = () => {
     const { user } = useContext(AuthContext);
@@ -14,16 +15,21 @@ const Settings = () => {
     const [selectedFile, setSelectedFile] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [image, setImage] = useState(null);
+
     const [values, setValues] = useState({
         username: currUser.username,
         email: currUser.email,
     });
+
     const initialValues = useMemo(() => {
         return {
             username: user.username,
             email: user.email,
         }
     }, [user]);
+
+    const { showToast } = useContext(ToastContext);
+
     const fileUploadRef = useRef(null);
     const navigate = useNavigate();
 
@@ -39,8 +45,13 @@ const Settings = () => {
                 setCurrUser(res);
                 setValues({ username: res.username, email: res.email });
             })
-            .catch(err => console.log(err));
-    }, [navigate, user]);
+            .catch(err => {
+                setIsLoading(false);
+                console.log(err);
+                showToast('There was an error processing your request. Please try again later.', true);
+                navigate('/');
+            });
+    }, [navigate, user, showToast]);
 
     const handleFileSelect = (e) => {
         setSelectedFile(e.target.files[0]);

@@ -44,7 +44,12 @@ const ChangePasswordModal = ({ onPasswordClose }) => {
                     navigate('/');
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setIsLoading(false);
+                console.log(err);
+                showToast('There was an error processing your request. Please try again later.', true);
+                navigate('/');
+            });
     }
 
     return (

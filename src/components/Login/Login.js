@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from '../../services/authService';
 import Spinner from '../Spinner/Spinner';
+import { ToastContext } from "../../contexts/ToastContext";
 
 const Login = ({
     handleAuth,
@@ -16,6 +17,8 @@ const Login = ({
     const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    const { showToast } = useContext(ToastContext);
 
     const handleChange = (e) => {
         setValues(old => ({ ...old, [e.target.name]: e.target.value }));
@@ -37,10 +40,16 @@ const Login = ({
                         setError(res.message);
                     } else {
                         handleAuth(res);
+                        showToast('Successfully logged in.');
                         navigate('/');
                     }
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    setIsLoading(false);
+                    console.log(err);
+                    showToast('There was an error processing your request. Please try again later.', true);
+                    navigate('/');
+                });
         }
     };
 
