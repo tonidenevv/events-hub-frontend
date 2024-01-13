@@ -24,23 +24,41 @@ function App() {
     setUser(null);
   }
 
-  const showToast = (text) => {
-    toast(text, {
-      position: "bottom-right",
-      autoClose: 2500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+  const showToast = (text, hasError) => {
+    if (hasError) {
+      toast.error(text, {
+        position: "bottom-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      toast(text, {
+        position: "bottom-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  }
+
+  const handleDeleteAccount = () => {
+    localStorage.clear();
+    setUser(null);
   }
 
   return (
     <div className="App">
       <ToastContext.Provider value={{ showToast }}>
-        <AuthContext.Provider value={{ user }}>
+        <AuthContext.Provider value={{ user, handleDeleteAccount }}>
           <BrowserRouter>
             <Navbar />
             <Routes>
