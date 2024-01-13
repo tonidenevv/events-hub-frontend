@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="App">
       <ToastContext.Provider value={{ showToast }}>
-        <AuthContext.Provider value={{ user, handleDeleteAccount }}>
+        <AuthContext.Provider value={{ user, handleDeleteAccount, handleAuth }}>
           <BrowserRouter>
             <Navbar />
             <Routes>

@@ -13,3 +13,14 @@ export const deleteOne = (userToken, userId) => {
     })
         .then(res => res.json());
 }
+
+export const changeOne = (userToken, userId, data) => {
+    return fetch(`${BASE_URL}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            Authorize: userToken,
+        },
+        body: data,
+    })
+        .then(res => res.json());
+}

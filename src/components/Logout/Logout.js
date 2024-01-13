@@ -16,7 +16,6 @@ const Logout = ({
     useEffect(() => {
         if (!user) return navigate('/login', { replace: true });
         setIsLoading(true);
-        console.log('here');
 
         authService.logout(user.token)
             .then(res => {
