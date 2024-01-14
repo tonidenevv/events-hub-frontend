@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from '../../services/authService';
 import Spinner from "../Spinner/Spinner";
@@ -28,9 +28,13 @@ const Register = () => {
 
     const { showToast } = useContext(ToastContext);
 
-    const { handleAuth } = useContext(AuthContext);
+    const { handleAuth, user } = useContext(AuthContext);
 
     const hasAnyErrors = (Object.values(errors).some(x => x === true) || Object.values(errors).length < 5);
+
+    useEffect(() => {
+        if (user) return navigate('/', { replace: true });
+    }, [user, navigate]);
 
     const handleChange = (e) => {
         setValues(old => ({ ...old, [e.target.name]: e.target.value }));
@@ -102,14 +106,14 @@ const Register = () => {
                 <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center">
                     {errors.username && <div className="lg:text-lg text-red-500 text-center font-semibold">Username should be between 5 and 15 characters and not have any special characters.</div>}
                     {serverErrors.username && <div className="lg:text-lg text-red-500 text-center font-semibold">{serverErrors.username}</div>}
-                    <input onBlur={handleBlur} name="username" type="text" onChange={handleChange} value={values.username} className={`lg:m-3 m-2 border-2 focus:border-4 ease-in-out duration-100 shadow-2xl rounded-lg lg:p-2 p-1 text-center ${(serverErrors.username || errors.username) ? 'border-red-500' : 'border-black'}`} placeholder="Username..." />
+                    <input onBlur={handleBlur} name="username" type="text" onChange={handleChange} value={values.username} className={`lg:m-3 m-2 border-2 focus:border-blue-500 focus:outline-none shadow-2xl rounded-lg lg:p-2 p-1 text-center ${(serverErrors.username || errors.username) ? 'border-red-500' : 'border-black'}`} placeholder="Username..." />
                     {errors.email && <div className="lg:text-lg text-red-500 text-center font-semibold">Email should be a valid email and between 5 and 25 characters.</div>}
                     {serverErrors.email && <div className="lg:text-lg text-red-500 text-center font-semibold">{serverErrors.email}</div>}
-                    <input onBlur={handleBlur} name="email" type="text" onChange={handleChange} value={values.email} className={`lg:m-3 m-2 border-2 focus:border-4 ease-in-out duration-100 shadow-2xl rounded-lg lg:p-2 p-1 text-center ${(serverErrors.email || errors.email) ? 'border-red-500' : 'border-black'}`} placeholder="Email..." />
+                    <input onBlur={handleBlur} name="email" type="text" onChange={handleChange} value={values.email} className={`lg:m-3 m-2 border-2 focus:border-blue-500 focus:outline-none shadow-2xl rounded-lg lg:p-2 p-1 text-center ${(serverErrors.email || errors.email) ? 'border-red-500' : 'border-black'}`} placeholder="Email..." />
                     {errors.password && <div className="lg:text-lg text-red-500 text-center font-semibold">Password should be between 5 and 15 characters.</div>}
-                    <input onBlur={handleBlur} name="password" type="password" onChange={handleChange} value={values.password} className={`lg:m-3 m-2 border-2 focus:border-4 ease-in-out duration-100 shadow-2xl rounded-lg p-1 lg:p-2 text-center ${(serverErrors.password || errors.password) ? 'border-red-500' : 'border-black'}`} placeholder="Password..." />
+                    <input onBlur={handleBlur} name="password" type="password" onChange={handleChange} value={values.password} className={`lg:m-3 m-2 border-2 focus:border-blue-500 focus:outline-none shadow-2xl rounded-lg p-1 lg:p-2 text-center ${(serverErrors.password || errors.password) ? 'border-red-500' : 'border-black'}`} placeholder="Password..." />
                     {errors.confirmPassword && <div className="lg:text-lg text-red-500 text-center font-semibold">Passwords should match.</div>}
-                    <input onBlur={handleBlur} name="confirmPassword" type="password" onChange={handleChange} value={values.confirmPassword} className={`lg:m-3 m-2 border-2 focus:border-4 ease-in-out duration-100 shadow-2xl rounded-lg p-1 lg:p-2 text-center ${(serverErrors.confirmPassword || errors.confirmPassword) ? 'border-red-500' : 'border-black'}`} placeholder="Confirm Password..." />
+                    <input onBlur={handleBlur} name="confirmPassword" type="password" onChange={handleChange} value={values.confirmPassword} className={`lg:m-3 m-2 border-2 focus:border-blue-500 focus:outline-none shadow-2xl rounded-lg p-1 lg:p-2 text-center ${(serverErrors.confirmPassword || errors.confirmPassword) ? 'border-red-500' : 'border-black'}`} placeholder="Confirm Password..." />
                     {errors.gender && <div className="lg:text-lg text-red-500 text-center font-semibold">Please select a gender.</div>}
                     <select onBlur={handleBlur} name="gender" className={`rounded-lg border-2 mt-4 p-1 px-2 shadow-2xl ${(serverErrors.gender || errors.gender) ? 'border-red-500' : 'border-black'}`} id="gender" value={gender} onChange={handleGenderChange}>
                         <option value="gender" disabled>Choose a gender...</option>
@@ -129,9 +133,9 @@ const Register = () => {
                             {selectedFile ? 'Avatar Added' : 'Choose Avatar (Optional)'}
                         </span>
                     </label>
-                    <input type="submit" disabled={hasAnyErrors} className={hasAnyErrors ? `bg-slate-500 border-black border-1 px-5 cursor-not-allowed font-semibold border-2 text-center m-6 p-2 rounded-2xl` : `bg-slate-500 border-black border-1 px-5 cursor-pointer font-semibold hover:text-lg border-2 hover:border-4 hover:bg-slate-600 text-center m-6 p-2 rounded-2xl`} value="Register" />
+                    <input type="submit" disabled={hasAnyErrors} className={hasAnyErrors ? `bg-slate-500 border-black border-1 px-5 cursor-not-allowed font-semibold border-2 text-center m-6 p-2 rounded-2xl` : `bg-slate-500 border-black border-1 px-5 cursor-pointer font-semibold ease-in-out duration-150 border-2 hover:bg-slate-600 text-center m-6 p-2 rounded-2xl`} value="Register" />
                 </form>
-                <div className="text-center text-lg font-semibold ">Already have an account? Sign in <Link className="text-blue-700" to="/login">here!</Link></div>
+                <div className="text-center text-lg font-semibold ">Already have an account? Sign in <Link className="text-blue-500 hover:text-blue-700" to="/login">here!</Link></div>
             </>
     )
 };

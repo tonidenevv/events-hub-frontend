@@ -7,6 +7,7 @@ import Register from "./components/Register/Register";
 import Logout from "./components/Logout/Logout";
 import Settings from "./components/Settings/Settings";
 import { ToastProvider } from "./contexts/ToastContext";
+import Create from "./components/Create/Create";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/create" element={<Create />} />
             </Routes>
           </BrowserRouter>
         </div>
