@@ -5,13 +5,12 @@ import * as authService from '../../services/authService';
 import Spinner from "../Spinner/Spinner";
 import { ToastContext } from "../../contexts/ToastContext";
 
-const Logout = ({
-    handleLogout,
-}) => {
+const Logout = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const { showToast } = useContext(ToastContext);
+    const { handleLogout } = useContext(AuthContext);
 
     useEffect(() => {
         if (!user) return navigate('/login', { replace: true });

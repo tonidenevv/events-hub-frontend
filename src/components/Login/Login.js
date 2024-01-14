@@ -3,10 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import * as authService from '../../services/authService';
 import Spinner from '../Spinner/Spinner';
 import { ToastContext } from "../../contexts/ToastContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-const Login = ({
-    handleAuth,
-}) => {
+const Login = () => {
     const [values, setValues] = useState({
         username: '',
         password: '',
@@ -19,6 +18,8 @@ const Login = ({
     const navigate = useNavigate();
 
     const { showToast } = useContext(ToastContext);
+
+    const { handleAuth } = useContext(AuthContext);
 
     const handleChange = (e) => {
         setValues(old => ({ ...old, [e.target.name]: e.target.value }));

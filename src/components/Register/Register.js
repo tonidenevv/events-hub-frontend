@@ -4,10 +4,9 @@ import * as authService from '../../services/authService';
 import Spinner from "../Spinner/Spinner";
 import hasErrors from "../../helpers/validators";
 import { ToastContext } from "../../contexts/ToastContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-const Register = ({
-    handleAuth,
-}) => {
+const Register = () => {
     const [values, setValues] = useState({
         username: '',
         email: '',
@@ -28,6 +27,8 @@ const Register = ({
     const navigate = useNavigate();
 
     const { showToast } = useContext(ToastContext);
+
+    const { handleAuth } = useContext(AuthContext);
 
     const hasAnyErrors = (Object.values(errors).some(x => x === true) || Object.values(errors).length < 5);
 
