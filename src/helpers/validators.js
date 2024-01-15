@@ -1,4 +1,4 @@
-const hasErrors = {
+export const hasErrors = {
     username: (username) => {
         if (username.length < 5 || username.length > 15) return true;
 
@@ -34,4 +34,25 @@ const hasErrors = {
     },
 }
 
-export default hasErrors;
+export const createHasErrors = {
+    title: (title) => {
+        if (title.length < 5 || title.length > 20) return true;
+
+        return false;
+    },
+    description: (description) => {
+        if (description.length < 5 || description.length > 25) return true;
+
+        return false;
+    },
+    eventType: (eventType) => {
+        if (eventType.length < 3 || eventType.length > 20) return true;
+
+        return false;
+    },
+    ticketPrice: (ticketPrice) => {
+        if (ticketPrice < 1 || ticketPrice > 9999) return true;
+
+        return false;
+    }
+}

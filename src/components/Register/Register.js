@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from '../../services/authService';
 import Spinner from "../Spinner/Spinner";
-import hasErrors from "../../helpers/validators";
+import { hasErrors } from "../../helpers/validators";
 import { ToastContext } from "../../contexts/ToastContext";
 import { AuthContext } from "../../contexts/AuthContext";
 

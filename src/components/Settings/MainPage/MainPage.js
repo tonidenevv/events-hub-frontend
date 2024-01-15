@@ -1,4 +1,4 @@
-import hasErrors from "../../../helpers/validators";
+import { hasErrors } from "../../../helpers/validators";
 import * as userService from '../../../services/userService';
 import { useContext, useState } from "react";
 import { AuthContext } from '../../../contexts/AuthContext';
