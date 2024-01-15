@@ -8,6 +8,8 @@ export const getOne = (userToken, userId) => {
     })
         .then(res => {
             if (!res.ok) throw new Error(`Status: ${res.status}`);
+
+            return res.json();
         });
 }
 
