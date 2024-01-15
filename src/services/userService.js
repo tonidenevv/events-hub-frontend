@@ -1,7 +1,14 @@
 const BASE_URL = 'http://localhost:5000/users';
 
 export const getOne = (userToken, userId) => {
-    return fetch(`${BASE_URL}/${userId}`, { headers: { Authorize: userToken } }).then(res => res.json());
+    return fetch(`${BASE_URL}/${userId}`, {
+        headers: {
+            Authorize: userToken
+        }
+    })
+        .then(res => {
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+        });
 }
 
 export const deleteOne = (userToken, userId) => {
@@ -11,7 +18,11 @@ export const deleteOne = (userToken, userId) => {
             Authorize: userToken,
         },
     })
-        .then(res => res.json());
+        .then(res => {
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+
+            return res.json();
+        });
 }
 
 export const changeOne = (userToken, userId, data) => {
@@ -22,5 +33,9 @@ export const changeOne = (userToken, userId, data) => {
         },
         body: data,
     })
-        .then(res => res.json());
+        .then(res => {
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+
+            return res.json();
+        });
 }

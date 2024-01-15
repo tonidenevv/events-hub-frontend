@@ -6,7 +6,11 @@ export const register = (data) => {
         headers: {},
         body: data,
     })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+
+            return res.json();
+        })
 };
 
 export const login = (data) => {
@@ -17,7 +21,11 @@ export const login = (data) => {
         },
         body: JSON.stringify(data),
     })
-        .then(res => res.json());
+        .then(res => {
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+
+            return res.json();
+        });
 };
 
 export const logout = (token) => {
@@ -27,7 +35,11 @@ export const logout = (token) => {
             Authorize: token,
         },
     })
-        .then(res => res.json());
+        .then(res => {
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+
+            return res.json();
+        });
 }
 
 export const changePassword = (token, data) => {
@@ -39,5 +51,9 @@ export const changePassword = (token, data) => {
         },
         body: JSON.stringify(data),
     })
-        .then(res => res.json());
+        .then(res => {
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+
+            return res.json();
+        });
 }
