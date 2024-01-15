@@ -65,9 +65,9 @@ const Login = () => {
                 <div className="bg-indigo-500 flex items-center justify-center h-screen">
                     <div className="lg:w-96 w-80 mb-32 p-6 shadow-2xl border-4 border-gray-700 bg-white rounded-xl">
 
-                        {error && <div className="text-center font-semibold text-red-500 text-lg">{error}</div>}
                         <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center">
                             <h1 className="text-4xl text-center mt-10 mb-8 font-bold">Login</h1>
+                            {error && <div className="text-center font-semibold text-red-500 text-lg">{error}</div>}
                             <input name="username" type="text" onChange={handleChange} value={values.username} className={`m-6 border-2 focus:outline-none focus:border-blue-500 shadow-2xl border-black rounded-lg p-2 text-center ${error && 'border-red-500'}`} placeholder="Username..." />
                             <input name="password" type="password" onChange={handleChange} value={values.password} className={`m-6 border-2 focus:outline-none focus:border-blue-500 shadow-2xl border-black rounded-lg p-2 text-center ${error && 'border-red-500'}`} placeholder="Password..." />
                             <input type="submit" className="bg-indigo-500 border-black border-1 px-5 cursor-pointer relative font-semibold border-2 hover:bg-indigo-700 ease-in-out duration-150 text-center m-6 p-2 rounded-2xl" value="Login" />
