@@ -35,9 +35,7 @@ const ChangePasswordModal = ({ onPasswordClose }) => {
         authService.changePassword(user.token, values)
             .then(res => {
                 setIsLoading(false);
-                console.log(res);
                 if (res.message) {
-                    console.log('reached');
                     setError(res.message);
                 } else {
                     setError('');

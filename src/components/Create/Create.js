@@ -102,7 +102,7 @@ const Create = () => {
 
     return (
         isLoading ? <Spinner /> :
-            <div className="bg-indigo-500 flex items-center justify-center min-h-screen">
+            <div className="bg-gradient-to-r from-blue-200 to-blue-500 flex items-center justify-center min-h-screen">
                 <div className="lg:w-96 w-80 mb-32 p-6 shadow-2xl border-4 mt-2 border-gray-700 bg-white rounded-xl">
                     <h1 className="text-center font-bold m-6 text-black text-2xl lg:text-3xl">Create an Event</h1>
                     <form onSubmit={handleSubmit} className="flex justify-center gap-3 items-center flex-col">
