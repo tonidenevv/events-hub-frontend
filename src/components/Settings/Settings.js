@@ -80,7 +80,7 @@ const Settings = () => {
 
     return (
         isLoading ? <Spinner /> :
-            <>
+            <div className="bg-indigo-500 min-h-screen flex flex-col">
                 <h1 className="text-center lg:m-10 m-6 lg:text-5xl text-5xl mt-16 font-body font-semibold">Settings</h1>
                 <div className="relative text-center hover:shadow-2xl flex lg:flex-row flex-col items-center shadow-sm lg:flex-col-2 md:flex-col-2 border-black border-4 ease-in-out md:mx-36 justify-center duration-300 mt-6 bg-slate-200 lg:mx-60 mx-10 rounded-2xl py-20 lg:py-20">
                     <ToggleSwitch handleSwitch={handleSwitch} />
@@ -90,7 +90,7 @@ const Settings = () => {
                     }
                 </div>
                 <input type="file" ref={fileUploadRef} onChange={handleFileSelect} accept="image/jpeg, image/jpg, image/png" className="hidden" />
-            </>
+            </div>
     )
 }
 
