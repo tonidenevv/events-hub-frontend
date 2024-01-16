@@ -9,8 +9,12 @@ export const createOne = (data, token) => {
         body: data,
     })
         .then(res => {
-            if (!res.ok) throw new Error(`Status: ${res.status}`);
-
-            return res.json();
+            const isResponseOkay = res.ok;
+            return res.json().then(res => {
+                if (!isResponseOkay && !res.message) {
+                    throw new Error(`Status: ${res.status}`);
+                }
+                return res;
+            });
         });
 }

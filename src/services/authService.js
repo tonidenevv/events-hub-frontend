@@ -7,9 +7,13 @@ export const register = (data) => {
         body: data,
     })
         .then(res => {
-            if (!res.ok) throw new Error(`Status: ${res.status}`);
-
-            return res.json();
+            const isResponseOkay = res.ok;
+            return res.json().then(res => {
+                if (!isResponseOkay && !res.message) {
+                    throw new Error(`Status: ${res.status}`);
+                }
+                return res;
+            });
         })
 };
 
@@ -22,9 +26,13 @@ export const login = (data) => {
         body: JSON.stringify(data),
     })
         .then(res => {
-            if (!res.ok) throw new Error(`Status: ${res.status}`);
-
-            return res.json();
+            const isResponseOkay = res.ok;
+            return res.json().then(res => {
+                if (!isResponseOkay && !res.message) {
+                    throw new Error(`Status: ${res.status}`);
+                }
+                return res;
+            });
         });
 };
 
@@ -36,9 +44,13 @@ export const logout = (token) => {
         },
     })
         .then(res => {
-            if (!res.ok) throw new Error(`Status: ${res.status}`);
-
-            return res.json();
+            const isResponseOkay = res.ok;
+            return res.json().then(res => {
+                if (!isResponseOkay && !res.message) {
+                    throw new Error(`Status: ${res.status}`);
+                }
+                return res;
+            });
         });
 }
 
@@ -52,8 +64,12 @@ export const changePassword = (token, data) => {
         body: JSON.stringify(data),
     })
         .then(res => {
-            if (!res.ok) throw new Error(`Status: ${res.status}`);
-
-            return res.json();
+            const isResponseOkay = res.ok;
+            return res.json().then(res => {
+                if (!isResponseOkay && !res.message) {
+                    throw new Error(`Status: ${res.status}`);
+                }
+                return res;
+            });
         });
 }

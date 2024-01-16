@@ -5,7 +5,7 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import { ToastContext } from "../../../contexts/ToastContext";
 import { useNavigate } from "react-router-dom";
 import CloseLogo from "../../svg/CloseLogo";
-import Spinner from '../../Spinner/Spinner';
+import Spinner from "../../Spinner/Spinner";
 
 const ChangePasswordModal = ({ onPasswordClose }) => {
     const [values, setValues] = useState({
@@ -15,7 +15,6 @@ const ChangePasswordModal = ({ onPasswordClose }) => {
     });
 
     const [error, setError] = useState('');
-
     const [isLoading, setIsLoading] = useState(false);
 
     const { user } = useContext(AuthContext);
@@ -36,7 +35,9 @@ const ChangePasswordModal = ({ onPasswordClose }) => {
         authService.changePassword(user.token, values)
             .then(res => {
                 setIsLoading(false);
+                console.log(res);
                 if (res.message) {
+                    console.log('reached');
                     setError(res.message);
                 } else {
                     setError('');
@@ -53,8 +54,8 @@ const ChangePasswordModal = ({ onPasswordClose }) => {
 
     return (
         <div id="backdrop" onClick={onPasswordClose} className="fixed inset-0 flex items-center justify-center bg-opacity-30 backdrop-blur-sm">
-            {isLoading ? <Spinner />
-                : <div className="bg-slate-100 shadow-2xl border-2 border-black p-2 rounded-lg text-center font-semibold m-4">
+            {isLoading ? <Spinner /> :
+                <div className="bg-slate-100 shadow-2xl border-2 border-black p-2 rounded-lg text-center font-semibold m-4">
                     <form onSubmit={handleSubmit} className="flex flex-col relative">
                         <h1 className="font-bold text-xl m-2 mt-8">Change Password</h1>
                         {error === 'Wrong password.' && <div className="text-center text-red-500 font-semibold">{error}</div>}

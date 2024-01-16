@@ -15,8 +15,8 @@ const MainPage = ({
     selectedFile,
     handleChange,
 }) => {
-    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const { user, handleAuth } = useContext(AuthContext);
     const { showToast } = useContext(ToastContext);
     const navigate = useNavigate();

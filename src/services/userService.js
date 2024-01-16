@@ -7,9 +7,13 @@ export const getOne = (userToken, userId) => {
         }
     })
         .then(res => {
-            if (!res.ok) throw new Error(`Status: ${res.status}`);
-
-            return res.json();
+            const isResponseOkay = res.ok;
+            return res.json().then(res => {
+                if (!isResponseOkay && !res.message) {
+                    throw new Error(`Status: ${res.status}`);
+                }
+                return res;
+            });
         });
 }
 
@@ -21,9 +25,13 @@ export const deleteOne = (userToken, userId) => {
         },
     })
         .then(res => {
-            if (!res.ok) throw new Error(`Status: ${res.status}`);
-
-            return res.json();
+            const isResponseOkay = res.ok;
+            return res.json().then(res => {
+                if (!isResponseOkay && !res.message) {
+                    throw new Error(`Status: ${res.status}`);
+                }
+                return res;
+            });
         });
 }
 
@@ -36,8 +44,12 @@ export const changeOne = (userToken, userId, data) => {
         body: data,
     })
         .then(res => {
-            if (!res.ok) throw new Error(`Status: ${res.status}`);
-
-            return res.json();
+            const isResponseOkay = res.ok;
+            return res.json().then(res => {
+                if (!isResponseOkay && !res.message) {
+                    throw new Error(`Status: ${res.status}`);
+                }
+                return res;
+            });
         });
 }

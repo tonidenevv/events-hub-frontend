@@ -1,6 +1,6 @@
 const Spinner = () => {
     return (
-        <div className="text-center bg-indigo-500 h-screen">
+        <div className="text-center">
             <div role="status">
                 <svg
                     aria-hidden="true"

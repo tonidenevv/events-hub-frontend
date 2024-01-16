@@ -100,7 +100,7 @@ const Register = () => {
 
     return (
         isLoading ? <Spinner /> :
-            <div className="bg-indigo-500 flex items-center justify-center min-h-screen">
+            <div className="bg-gradient-to-r from-blue-200 to-blue-500 flex items-center justify-center min-h-screen">
                 <div className="lg:w-96 w-80 mb-32 min-h-full mt-3.5 p-6 shadow-2xl border-4 border-gray-700 bg-white rounded-xl">
                     <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center">
                         <h1 className="lg:text-4xl text-4xl text-center lg:mt-6 mt-4 lg:mb-8 mb-2 font-bold">Register</h1>
