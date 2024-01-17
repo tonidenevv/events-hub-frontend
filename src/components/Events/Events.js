@@ -46,7 +46,7 @@ const Events = () => {
                 <Search events={events} getSearchValue={getSearchValue} />
                 <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-14 mx-auto p-4 py-12">
                     {showSearch
-                        ? foundEvents.length === 0 ? <div className="col-span-4">No events found.</div> : foundEvents.map(x => <EventCard key={x._id} event={x} />)
+                        ? foundEvents.length === 0 ? <div className="col-span-4 text-center font-bold mt-20 text-4xl">No events found.</div> : foundEvents.map(x => <EventCard key={x._id} event={x} />)
                         : events.map(x => <EventCard key={x._id} event={x} />)
                     }
                 </div>
