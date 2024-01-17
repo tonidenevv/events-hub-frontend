@@ -8,6 +8,7 @@ import Logout from "./components/Logout/Logout";
 import Settings from "./components/Settings/Settings";
 import { ToastProvider } from "./contexts/ToastContext";
 import Create from "./components/Create/Create";
+import Events from "./components/Events/Events";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/create" element={<Create />} />
+              <Route path="/events" element={<Events />} />
             </Routes>
           </BrowserRouter>
         </div>
