@@ -6,6 +6,7 @@ import { ToastContext } from '../../contexts/ToastContext';
 import Spinner from '../Spinner/Spinner';
 import Search from "./Search/Search";
 import EventCard from "./EventCard/EventCard";
+import ScrollTopButton from "../ScrollTopButton/ScrollTopButton";
 
 const Events = () => {
     const [events, setEvents] = useState([]);
@@ -50,6 +51,7 @@ const Events = () => {
                         : events.map(x => <EventCard key={x._id} event={x} />)
                     }
                 </div>
+                <ScrollTopButton />
             </>
     )
 }
