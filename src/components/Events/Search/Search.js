@@ -15,7 +15,7 @@ const Search = ({ getSearchValue }) => {
                     type="text"
                     name="search"
                     placeholder="Search Events..."
-                    className="lg:w-96 w-80 h-16 rounded-full pl-8 pr-4 focus:outline-none focus:border-blue-500 border-2 border-black"
+                    className="lg:w-96 w-80 h-16 rounded-full shadow-2xl pl-8 pr-4 focus:outline-none focus:border-blue-500 border-2 border-black"
                     onChange={(e) => setSearchValue(e.target.value)}
                 />
                 <button onClick={handleSearch} className="absolute hover:bg-slate-300 p-2 hover:rounded-full right-5">
