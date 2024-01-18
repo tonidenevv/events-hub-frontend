@@ -51,7 +51,7 @@ const ChangePasswordModal = ({ onPasswordClose }) => {
     }
 
     return (
-        <div id="backdrop" onClick={onPasswordClose} className="fixed inset-0 flex items-center justify-center bg-opacity-30 backdrop-blur-sm">
+        <div id="backdrop" onClick={onPasswordClose} className="fixed z-50 inset-0 flex items-center justify-center bg-opacity-30 backdrop-blur-sm">
             {isLoading ? <Spinner /> :
                 <div className="bg-slate-100 shadow-2xl border-2 border-black p-2 rounded-lg text-center font-semibold m-4">
                     <form onSubmit={handleSubmit} className="flex flex-col relative">
