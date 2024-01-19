@@ -62,12 +62,9 @@ const Events = () => {
         isLoading ? <Spinner /> :
             <>
                 <div>
-                    <div className="flex lg:flex-row flex-col justify-center items-center mt-16">
+                    <div className="flex justify-center items-center mt-16">
                         <Search events={events} getSearchValue={getSearchValue} />
-                        <div className="flex mt-3 lg:mt-0 justify-center items-center gap-4">
-                            <FilterEvents handleFilterClick={handleFilterClick} />
-                            <SortEvents />
-                        </div>
+                        <FilterEvents handleFilterClick={handleFilterClick} />
                     </div>
                     <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-14 mx-auto p-4 py-12">
                         {showSearch
