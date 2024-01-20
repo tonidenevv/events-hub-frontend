@@ -15,8 +15,10 @@ const Events = () => {
     const [events, setEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [foundEvents, setFoundEvents] = useState([]);
-    const [showFiltered, setShowFiltered] = useState(false);
+    const [searchedEvents, setSearchedEvents] = useState(null);
+    const [filteredEvents, setFilteredEvents] = useState(null);
     const [showFilterModal, setShowFilterModal] = useState(false);
+    const [searchedValue, setSearchedValue] = useState(null);
 
     const MIN_MAX_PRICE = [1, 9999];
     const [daysLeftSelectedRadio, setDaysLeftSelectedRadio] = useState('anyDays');
@@ -45,12 +47,16 @@ const Events = () => {
     }, [navigate, showToast]);
 
     const getSearchValue = (searchValue) => {
-        setShowFiltered(true);
-        if (!searchValue) setFoundEvents(events);
 
-        const foundEvents = events.filter(x => x.title.toLowerCase().includes(searchValue.toLowerCase()));
+        setSearchedValue(searchValue);
 
-        setFoundEvents(foundEvents);
+        const found = events.filter(x => x.title.toLowerCase().includes(searchValue.toLowerCase()));
+
+        setSearchedEvents(found);
+
+        if (!filteredEvents) return setFoundEvents(found);
+
+        if (filteredEvents) return setFoundEvents(filteredEvents.filter(x => x.title.toLowerCase().includes(searchValue.toLowerCase())));
     };
 
     const handleFilterClick = () => {
@@ -65,9 +71,14 @@ const Events = () => {
         }
     }
 
-    const getFilteredEvents = (filteredEvents) => {
-        setShowFiltered(true);
-        setFoundEvents(filteredEvents);
+    const getFilteredEvents = (eventsAfterFilter) => {
+        setFilteredEvents(eventsAfterFilter);
+
+        if (!searchedEvents) return setFoundEvents(eventsAfterFilter);
+
+        if (typeof searchedValue === 'string') return setFoundEvents(eventsAfterFilter.filter(x => x.title.toLowerCase().includes(searchedValue.toLowerCase())));
+
+        if (!searchedEvents) return setFoundEvents(eventsAfterFilter);
     }
 
     return (
@@ -79,7 +90,7 @@ const Events = () => {
                         <FilterEvents handleFilterClick={handleFilterClick} />
                     </div>
                     <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-14 mx-auto p-4 py-12">
-                        {showFiltered
+                        {searchedEvents || filteredEvents
                             ? foundEvents.length === 0 ? <div className="col-span-4 text-center font-bold mt-20 text-4xl">No events found.</div> : foundEvents.map(x => <EventCard key={x._id} event={x} />)
                             : events.map(x => <EventCard key={x._id} event={x} />)
                         }

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import CloseLogo from '../../../svg/CloseLogo';
 import AttendingCountFilter from './AttendingCountFilter/AttendingCountFilter';
 import DaysLeftFilter from './DaysLeftFilter/DaysLeftFilter';
