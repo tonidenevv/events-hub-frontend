@@ -7,14 +7,8 @@ import ModalFooter from './ModalFooter/ModalFooter';
 import PriceSlider from './PriceSlider/PriceSlider';
 import filters from './filters';
 
-const FilterModal = ({ closeFilterModal, events, getFilteredEvents }) => {
+const FilterModal = ({ closeFilterModal, events, getFilteredEvents, daysLeftSelectedRadio, setDaysLeftSelectedRadio, attendingCountSelectedRadio, setAttendingCountSelectedRadio, expiredSelectedRadio, setExpiredSelectedRadio, priceSliderValues, setPriceSliderValues, priceInputValues, setPriceInputValues }) => {
     const MIN_MAX_PRICE = [1, 9999];
-    const [daysLeftSelectedRadio, setDaysLeftSelectedRadio] = useState('anyDays');
-    const [attendingCountSelectedRadio, setAttendingCountSelectedRadio] = useState('anyAttending');
-    const [expiredSelectedRadio, setExpiredSelectedRadio] = useState('anyExpiry');
-
-    const [priceSliderValues, setPriceSliderValues] = useState(MIN_MAX_PRICE);
-    const [priceInputValues, setPriceInputValues] = useState(MIN_MAX_PRICE);
 
     const handleClear = () => {
         setDaysLeftSelectedRadio('anyDays');
