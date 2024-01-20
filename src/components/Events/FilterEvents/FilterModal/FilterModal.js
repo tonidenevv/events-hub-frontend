@@ -1,6 +1,7 @@
 import CloseLogo from '../../../svg/CloseLogo';
 import AttendingCountFilter from './AttendingCountFilter/AttendingCountFilter';
 import DaysLeftFilter from './DaysLeftFilter/DaysLeftFilter';
+import ExpiredFilter from './ExpiredFilter/ExpiredFilter';
 import ModalFooter from './ModalFooter/ModalFooter';
 import PriceSlider from './PriceSlider/PriceSlider';
 
@@ -15,6 +16,7 @@ const FilterModal = ({ closeFilterModal }) => {
                 <PriceSlider />
                 <DaysLeftFilter />
                 <AttendingCountFilter />
+                <ExpiredFilter />
                 <ModalFooter />
             </div>
         </div>
