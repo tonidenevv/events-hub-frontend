@@ -7,19 +7,24 @@ import ModalFooter from './ModalFooter/ModalFooter';
 import PriceSlider from './PriceSlider/PriceSlider';
 
 const FilterModal = ({ closeFilterModal }) => {
+    const MIN_MAX_PRICE = [1, 9999];
     const [daysLeftSelectedRadio, setDaysLeftSelectedRadio] = useState('anyDays');
     const [attendingCountSelectedRadio, setAttendingCountSelectedRadio] = useState('anyAttending');
     const [expiredSelectedRadio, setExpiredSelectedRadio] = useState('anyExpiry');
 
-    const [priceSliderValues, setPriceSliderValues] = useState([1, 9999]);
-    const [priceInputValues, setPriceInputValues] = useState([1, 9999]);
+    const [priceSliderValues, setPriceSliderValues] = useState(MIN_MAX_PRICE);
+    const [priceInputValues, setPriceInputValues] = useState(MIN_MAX_PRICE);
 
     const handleClear = () => {
         setDaysLeftSelectedRadio('anyDays');
         setAttendingCountSelectedRadio('anyAttending');
         setExpiredSelectedRadio('anyExpiry');
-        setPriceSliderValues([1, 9999]);
-        setPriceInputValues([1, 9999]);
+        setPriceSliderValues(MIN_MAX_PRICE);
+        setPriceInputValues(MIN_MAX_PRICE);
+    }
+
+    const handleFilter = () => {
+        console.log('filtered!');
     }
 
     return (
@@ -33,7 +38,7 @@ const FilterModal = ({ closeFilterModal }) => {
                 <DaysLeftFilter daysLeftSelectedRadio={daysLeftSelectedRadio} setDaysLeftSelectedRadio={setDaysLeftSelectedRadio} />
                 <AttendingCountFilter attendingCountSelectedRadio={attendingCountSelectedRadio} setAttendingCountSelectedRadio={setAttendingCountSelectedRadio} />
                 <ExpiredFilter expiredSelectedRadio={expiredSelectedRadio} setExpiredSelectedRadio={setExpiredSelectedRadio} />
-                <ModalFooter handleClear={handleClear} />
+                <ModalFooter handleClear={handleClear} handleFilter={handleFilter} />
             </div>
         </div>
     );

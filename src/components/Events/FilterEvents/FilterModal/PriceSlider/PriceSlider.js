@@ -1,11 +1,8 @@
 import './CustomSlider.css';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-// import { useState } from 'react';
 
 const PriceSlider = ({ priceSliderValues, setPriceSliderValues, priceInputValues, setPriceInputValues }) => {
-    // const [priceSliderValues, setPriceSliderValues] = useState([1, 9999]);
-    // const [inputValues, setPriceInputValues] = useState([1, 9999]);
 
     const handleSliderChange = (values) => {
         setPriceSliderValues(values);
