@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const AttendingCountFilter = () => {
-    const [selectedRadio, setSelectedRadio] = useState(null);
+    const [selectedRadio, setSelectedRadio] = useState('anyAttending');
 
     const handleRadioChange = (e) => {
         setSelectedRadio(e.target.value);
@@ -10,7 +10,7 @@ const AttendingCountFilter = () => {
     const isChecked = (radioValue) => {
         return radioValue === selectedRadio;
     }
-    
+
     return (
         <div className="border-b-2 border-slate-300 pb-5">
             <div className="font-semibold my-4 ml-8 text-lg">

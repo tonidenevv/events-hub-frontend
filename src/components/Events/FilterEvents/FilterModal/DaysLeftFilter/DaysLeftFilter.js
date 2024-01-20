@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const DaysLeftFilter = () => {
-    const [selectedRadio, setSelectedRadio] = useState(null);
+    const [selectedRadio, setSelectedRadio] = useState('anyDays');
 
     const handleRadioChange = (e) => {
         setSelectedRadio(e.target.value);
@@ -18,8 +18,8 @@ const DaysLeftFilter = () => {
             </div>
             <div className="flex justify-center items-center">
                 <div className="grid grid-cols-5 px-3 gap-6 lg:gap-10">
-                    <input checked={isChecked('anyRadio')} onChange={handleRadioChange} className="hidden" type="radio" name="daysLeft" id="anyRadio" value="anyRadio" />
-                    <label htmlFor="anyRadio" className={`cursor-pointer rounded-full h-9 w-9 flex justify-center items-center text-center text-sm font-semibold border-2 ${isChecked('anyRadio') ? 'bg-black border-white text-white' : 'bg-white border-black text-black hover:bg-slate-200'}`}>Any</label>
+                    <input checked={isChecked('anyDays')} onChange={handleRadioChange} className="hidden" type="radio" name="daysLeft" id="anyDays" value="anyDays" />
+                    <label htmlFor="anyDays" className={`cursor-pointer rounded-full h-9 w-9 flex justify-center items-center text-center text-sm font-semibold border-2 ${isChecked('anyDays') ? 'bg-black border-white text-white' : 'bg-white border-black text-black hover:bg-slate-200'}`}>Any</label>
                     <input checked={isChecked('oneDayRadio')} onChange={handleRadioChange} className="hidden" type="radio" name="daysLeft" id="oneDayRadio" value="oneDayRadio" />
                     <label htmlFor="oneDayRadio" className={`cursor-pointer rounded-full h-9 w-9 flex justify-center items-center text-center font-semibold border-2 ${isChecked('oneDayRadio') ? 'bg-black border-white text-white' : 'bg-white border-black text-black hover:bg-slate-200'}`}>1</label>
                     <input checked={isChecked('twoDayRadio')} onChange={handleRadioChange} className="hidden" type="radio" name="daysLeft" id="twoDayRadio" value="twoDayRadio" />

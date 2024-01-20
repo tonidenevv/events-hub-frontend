@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const ExpiredFilter = () => {
-    const [selectedRadio, setSelectedRadio] = useState(null);
+    const [selectedRadio, setSelectedRadio] = useState('anyExpiry');
 
     const handleRadioChange = (e) => {
         setSelectedRadio(e.target.value);
