@@ -58,6 +58,10 @@ const Events = () => {
         }
     }
 
+    const getFilteredEvents = (filteredEvents) => {
+        console.log(filteredEvents);
+    }
+
     return (
         isLoading ? <Spinner /> :
             <>
@@ -73,7 +77,7 @@ const Events = () => {
                         }
                     </div>
                     <ScrollTopButton />
-                    {showFilterModal && <FilterModal closeFilterModal={closeFilterModal} />}
+                    {showFilterModal && <FilterModal events={events} getFilteredEvents={getFilteredEvents} closeFilterModal={closeFilterModal} />}
                 </div>
             </>
     )
