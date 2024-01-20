@@ -5,7 +5,7 @@ import DaysLeftFilter from './DaysLeftFilter/DaysLeftFilter';
 import ExpiredFilter from './ExpiredFilter/ExpiredFilter';
 import ModalFooter from './ModalFooter/ModalFooter';
 import PriceSlider from './PriceSlider/PriceSlider';
-import { differenceInCalendarDays } from 'date-fns';
+import filters from './filters';
 
 const FilterModal = ({ closeFilterModal, events, getFilteredEvents }) => {
     const MIN_MAX_PRICE = [1, 9999];
@@ -25,52 +25,52 @@ const FilterModal = ({ closeFilterModal, events, getFilteredEvents }) => {
     }
 
     const handleFilter = (e) => {
-        let filteredEvents = handlePriceFilter(events, priceSliderValues);
-        filteredEvents = handleDaysUntilFilter(filteredEvents, daysLeftSelectedRadio);
-        filteredEvents = handleAttendingCountFilter(filteredEvents, attendingCountSelectedRadio);
-        filteredEvents = handleExpiredFilter(filteredEvents, expiredSelectedRadio);
+        let filteredEvents = filters.handlePriceFilter(events, priceSliderValues);
+        filteredEvents = filters.handleDaysUntilFilter(filteredEvents, daysLeftSelectedRadio);
+        filteredEvents = filters.handleAttendingCountFilter(filteredEvents, attendingCountSelectedRadio);
+        filteredEvents = filters.handleExpiredFilter(filteredEvents, expiredSelectedRadio);
 
         getFilteredEvents(filteredEvents);
         closeFilterModal(e);
     }
 
-    const handlePriceFilter = (events, priceRange) => events.filter(x => x.ticketPrice >= priceRange[0] && x.ticketPrice <= priceRange[1]);
+    // const handlePriceFilter = (events, priceRange) => events.filter(x => x.ticketPrice >= priceRange[0] && x.ticketPrice <= priceRange[1]);
 
-    const handleDaysUntilFilter = (events, selectedRadio) => {
-        if (selectedRadio === 'anyDays') return events;
+    // const handleDaysUntilFilter = (events, selectedRadio) => {
+    //     if (selectedRadio === 'anyDays') return events;
 
-        if (selectedRadio === 'oneDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 1);
+    //     if (selectedRadio === 'oneDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 1);
 
-        if (selectedRadio === 'twoDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 2);
+    //     if (selectedRadio === 'twoDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 2);
 
-        if (selectedRadio === 'threeDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 3);
+    //     if (selectedRadio === 'threeDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 3);
 
-        if (selectedRadio === 'fourPlusRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) >= 4);
-    }
+    //     if (selectedRadio === 'fourPlusRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) >= 4);
+    // }
 
-    const handleAttendingCountFilter = (events, selectedRadio) => {
-        if (selectedRadio === 'anyAttending') return events;
+    // const handleAttendingCountFilter = (events, selectedRadio) => {
+    //     if (selectedRadio === 'anyAttending') return events;
 
-        if (selectedRadio === 'oneAndMore') return events.filter(x => x.attending.length >= 1);
+    //     if (selectedRadio === 'oneAndMore') return events.filter(x => x.attending.length >= 1);
 
-        if (selectedRadio === 'threeAndMore') return events.filter(x => x.attending.length >= 3);
+    //     if (selectedRadio === 'threeAndMore') return events.filter(x => x.attending.length >= 3);
 
-        if (selectedRadio === 'fiveAndMore') return events.filter(x => x.attending.length >= 5);
+    //     if (selectedRadio === 'fiveAndMore') return events.filter(x => x.attending.length >= 5);
 
-        if (selectedRadio === 'tenAndMore') return events.filter(x => x.attending.length >= 10);
-    }
+    //     if (selectedRadio === 'tenAndMore') return events.filter(x => x.attending.length >= 10);
+    // }
 
-    function daysDifferenceFromToday(eventDate) {
-        return differenceInCalendarDays(eventDate, new Date());
-    }
+    // function daysDifferenceFromToday(eventDate) {
+    //     return differenceInCalendarDays(eventDate, new Date());
+    // }
 
-    const handleExpiredFilter = (events, selectedRadio) => {
-        if (selectedRadio === 'anyExpiry') return events;
+    // const handleExpiredFilter = (events, selectedRadio) => {
+    //     if (selectedRadio === 'anyExpiry') return events;
 
-        if (selectedRadio === 'nonExpiredFilter') return events.filter(x => daysDifferenceFromToday(x.eventDate) >= 0);
+    //     if (selectedRadio === 'nonExpiredFilter') return events.filter(x => daysDifferenceFromToday(x.eventDate) >= 0);
 
-        if (selectedRadio === 'expiredFilter') return events.filter(x => daysDifferenceFromToday(x.eventDate) < 0);
-    }
+    //     if (selectedRadio === 'expiredFilter') return events.filter(x => daysDifferenceFromToday(x.eventDate) < 0);
+    // }
 
     return (
         <div onClick={closeFilterModal} id="backdrop" className="bg-opacity-30 inset-0 z-50 backdrop-blur-sm fixed flex justify-center items-center">
