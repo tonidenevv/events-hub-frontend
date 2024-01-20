@@ -19,6 +19,7 @@ const Events = () => {
     const [filteredEvents, setFilteredEvents] = useState(null);
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [searchedValue, setSearchedValue] = useState(null);
+    const [filtersCount, setFiltersCount] = useState(0);
 
     const MIN_MAX_PRICE = [1, 9999];
     const [daysLeftSelectedRadio, setDaysLeftSelectedRadio] = useState('anyDays');
@@ -71,8 +72,9 @@ const Events = () => {
         }
     }
 
-    const getFilteredEvents = (eventsAfterFilter) => {
+    const getFilteredEvents = (eventsAfterFilter, filterCount) => {
         setFilteredEvents(eventsAfterFilter);
+        setFiltersCount(filterCount);
 
         if (!searchedEvents) return setFoundEvents(eventsAfterFilter);
 
@@ -87,7 +89,7 @@ const Events = () => {
                 <div>
                     <div className="flex justify-center items-center mt-16">
                         <Search events={events} getSearchValue={getSearchValue} />
-                        <FilterEvents handleFilterClick={handleFilterClick} />
+                        <FilterEvents filtersCount={filtersCount} handleFilterClick={handleFilterClick} />
                     </div>
                     <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-14 mx-auto p-4 py-12">
                         {searchedEvents || filteredEvents

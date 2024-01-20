@@ -18,12 +18,22 @@ const FilterModal = ({ closeFilterModal, events, getFilteredEvents, daysLeftSele
     }
 
     const handleFilter = (e) => {
+        let filtersCount = 0;
+
+        if (priceSliderValues[0] !== 1 || priceSliderValues[1] !== 9999) filtersCount++;
+        if (daysLeftSelectedRadio !== 'anyDays') filtersCount++;
+        if (attendingCountSelectedRadio !== 'anyAttending') filtersCount++;
+        if (expiredSelectedRadio !== 'anyExpiry') filtersCount++;
+
         let filteredEvents = filters.handlePriceFilter(events, priceSliderValues);
+
         filteredEvents = filters.handleDaysUntilFilter(filteredEvents, daysLeftSelectedRadio);
+
         filteredEvents = filters.handleAttendingCountFilter(filteredEvents, attendingCountSelectedRadio);
+
         filteredEvents = filters.handleExpiredFilter(filteredEvents, expiredSelectedRadio);
 
-        getFilteredEvents(filteredEvents);
+        getFilteredEvents(filteredEvents, filtersCount);
         closeFilterModal(e);
     }
 
