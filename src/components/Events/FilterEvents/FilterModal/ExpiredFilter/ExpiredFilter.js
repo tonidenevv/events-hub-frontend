@@ -1,14 +1,11 @@
-import { useState } from "react";
-
-const ExpiredFilter = () => {
-    const [selectedRadio, setSelectedRadio] = useState('anyExpiry');
+const ExpiredFilter = ({ expiredSelectedRadio, setExpiredSelectedRadio }) => {
 
     const handleRadioChange = (e) => {
-        setSelectedRadio(e.target.value);
+        setExpiredSelectedRadio(e.target.value);
     };
 
     const isChecked = (radioValue) => {
-        return radioValue === selectedRadio;
+        return radioValue === expiredSelectedRadio;
     }
     return (
         <div className="border-b-2 border-slate-300 pb-5">

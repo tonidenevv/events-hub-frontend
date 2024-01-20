@@ -1,24 +1,24 @@
 import './CustomSlider.css';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useState } from 'react';
+// import { useState } from 'react';
 
-const PriceSlider = () => {
-    const [sliderValues, setSliderValues] = useState([1, 9999]);
-    const [inputValues, setInputValues] = useState([1, 9999]);
+const PriceSlider = ({ priceSliderValues, setPriceSliderValues, priceInputValues, setPriceInputValues }) => {
+    // const [priceSliderValues, setPriceSliderValues] = useState([1, 9999]);
+    // const [inputValues, setPriceInputValues] = useState([1, 9999]);
 
     const handleSliderChange = (values) => {
-        setSliderValues(values);
-        setInputValues(values);
+        setPriceSliderValues(values);
+        setPriceInputValues(values);
     }
 
     const handleInputsChange = (e) => {
         if (e.target.name === 'firstInput') {
-            setSliderValues([e.target.value, sliderValues[1]]);
-            setInputValues([e.target.value, sliderValues[1]]);
+            setPriceSliderValues([e.target.value, priceSliderValues[1]]);
+            setPriceInputValues([e.target.value, priceSliderValues[1]]);
         } else if (e.target.name === 'secondInput') {
-            setSliderValues([sliderValues[0], e.target.value]);
-            setInputValues([sliderValues[0], e.target.value]);
+            setPriceSliderValues([priceSliderValues[0], e.target.value]);
+            setPriceInputValues([priceSliderValues[0], e.target.value]);
         }
     }
 
@@ -44,13 +44,13 @@ const PriceSlider = () => {
         if (e.target.value > 9999 && e.target.value) e.target.value = 9999;
 
         if (e.target.name === 'firstInput') {
-            if (e.target.value >= sliderValues[1]) e.target.value = Number(sliderValues[1]) - 1;
-            setSliderValues([e.target.value, sliderValues[1]]);
-            setInputValues([e.target.value, sliderValues[1]]);
+            if (e.target.value >= priceSliderValues[1]) e.target.value = Number(priceSliderValues[1]) - 1;
+            setPriceSliderValues([e.target.value, priceSliderValues[1]]);
+            setPriceInputValues([e.target.value, priceSliderValues[1]]);
         } else if (e.target.name === 'secondInput') {
-            if (e.target.value <= sliderValues[0]) e.target.value = Number(sliderValues[0]) + 1;
-            setSliderValues([sliderValues[0], e.target.value]);
-            setInputValues([sliderValues[0], e.target.value]);
+            if (e.target.value <= priceSliderValues[0]) e.target.value = Number(priceSliderValues[0]) + 1;
+            setPriceSliderValues([priceSliderValues[0], e.target.value]);
+            setPriceInputValues([priceSliderValues[0], e.target.value]);
         }
     }
     return (
@@ -59,11 +59,11 @@ const PriceSlider = () => {
                 Price Range
             </div>
             <div className='custom-slider-container'>
-                <Slider styles={sliderStyles} range min={1} max={9999} value={sliderValues} onChange={handleSliderChange} />
+                <Slider styles={sliderStyles} range min={1} max={9999} value={priceSliderValues} onChange={handleSliderChange} />
             </div>
             <div className="flex mt-8 lg:gap-10 gap-4 justify-center items-center">
-                <input type="number" className='lg:w-32 w-24 border-2 focus:outline-none focus:border-blue-500 border-black rounded-xl p-0.5 px-1' name='firstInput' onChange={handleInputsChange} onBlur={handleInputsBlur} value={inputValues[0]} />
-                <input type="number" className='lg:w-32 w-24 border-2 focus:outline-none focus:border-blue-500 border-black rounded-xl p-0.5 px-1' name='secondInput' onChange={handleInputsChange} onBlur={handleInputsBlur} value={inputValues[1]} />
+                <input type="number" className='lg:w-32 w-24 border-2 focus:outline-none focus:border-blue-500 border-black rounded-xl p-0.5 px-1' name='firstInput' onChange={handleInputsChange} onBlur={handleInputsBlur} value={priceInputValues[0]} />
+                <input type="number" className='lg:w-32 w-24 border-2 focus:outline-none focus:border-blue-500 border-black rounded-xl p-0.5 px-1' name='secondInput' onChange={handleInputsChange} onBlur={handleInputsBlur} value={priceInputValues[1]} />
             </div>
         </div>
     )

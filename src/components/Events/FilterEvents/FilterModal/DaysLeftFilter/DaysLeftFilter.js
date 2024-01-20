@@ -1,14 +1,10 @@
-import { useState } from "react";
-
-const DaysLeftFilter = () => {
-    const [selectedRadio, setSelectedRadio] = useState('anyDays');
-
+const DaysLeftFilter = ({ daysLeftSelectedRadio, setDaysLeftSelectedRadio }) => {
     const handleRadioChange = (e) => {
-        setSelectedRadio(e.target.value);
+        setDaysLeftSelectedRadio(e.target.value);
     };
 
     const isChecked = (radioValue) => {
-        return radioValue === selectedRadio;
+        return radioValue === daysLeftSelectedRadio;
     }
 
     return (

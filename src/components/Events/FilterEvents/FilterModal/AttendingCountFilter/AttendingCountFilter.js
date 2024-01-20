@@ -1,14 +1,11 @@
-import { useState } from "react";
-
-const AttendingCountFilter = () => {
-    const [selectedRadio, setSelectedRadio] = useState('anyAttending');
+const AttendingCountFilter = ({ attendingCountSelectedRadio, setAttendingCountSelectedRadio }) => {
 
     const handleRadioChange = (e) => {
-        setSelectedRadio(e.target.value);
+        setAttendingCountSelectedRadio(e.target.value);
     };
 
     const isChecked = (radioValue) => {
-        return radioValue === selectedRadio;
+        return radioValue === attendingCountSelectedRadio;
     }
 
     return (
