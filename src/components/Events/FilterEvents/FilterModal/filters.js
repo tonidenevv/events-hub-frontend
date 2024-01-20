@@ -5,13 +5,13 @@ const handlePriceFilter = (events, priceRange) => events.filter(x => x.ticketPri
 const handleDaysUntilFilter = (events, selectedRadio) => {
     if (selectedRadio === 'anyDays') return events;
 
+    if (selectedRadio === 'zeroDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 0);
+
     if (selectedRadio === 'oneDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 1);
 
     if (selectedRadio === 'twoDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 2);
 
-    if (selectedRadio === 'threeDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 3);
-
-    if (selectedRadio === 'fourPlusRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) >= 4);
+    if (selectedRadio === 'threePlusRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) >= 3);
 }
 
 const handleAttendingCountFilter = (events, selectedRadio) => {

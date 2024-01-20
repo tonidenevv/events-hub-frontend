@@ -34,44 +34,6 @@ const FilterModal = ({ closeFilterModal, events, getFilteredEvents }) => {
         closeFilterModal(e);
     }
 
-    // const handlePriceFilter = (events, priceRange) => events.filter(x => x.ticketPrice >= priceRange[0] && x.ticketPrice <= priceRange[1]);
-
-    // const handleDaysUntilFilter = (events, selectedRadio) => {
-    //     if (selectedRadio === 'anyDays') return events;
-
-    //     if (selectedRadio === 'oneDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 1);
-
-    //     if (selectedRadio === 'twoDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 2);
-
-    //     if (selectedRadio === 'threeDayRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) === 3);
-
-    //     if (selectedRadio === 'fourPlusRadio') return events.filter(x => daysDifferenceFromToday(x.eventDate) >= 4);
-    // }
-
-    // const handleAttendingCountFilter = (events, selectedRadio) => {
-    //     if (selectedRadio === 'anyAttending') return events;
-
-    //     if (selectedRadio === 'oneAndMore') return events.filter(x => x.attending.length >= 1);
-
-    //     if (selectedRadio === 'threeAndMore') return events.filter(x => x.attending.length >= 3);
-
-    //     if (selectedRadio === 'fiveAndMore') return events.filter(x => x.attending.length >= 5);
-
-    //     if (selectedRadio === 'tenAndMore') return events.filter(x => x.attending.length >= 10);
-    // }
-
-    // function daysDifferenceFromToday(eventDate) {
-    //     return differenceInCalendarDays(eventDate, new Date());
-    // }
-
-    // const handleExpiredFilter = (events, selectedRadio) => {
-    //     if (selectedRadio === 'anyExpiry') return events;
-
-    //     if (selectedRadio === 'nonExpiredFilter') return events.filter(x => daysDifferenceFromToday(x.eventDate) >= 0);
-
-    //     if (selectedRadio === 'expiredFilter') return events.filter(x => daysDifferenceFromToday(x.eventDate) < 0);
-    // }
-
     return (
         <div onClick={closeFilterModal} id="backdrop" className="bg-opacity-30 inset-0 z-50 backdrop-blur-sm fixed flex justify-center items-center">
             <div className="bg-slate-100 border-2 rounded-lg flex flex-col md:w-[28rem] w-[22.5rem] h-[32rem] shadow-2xl border-black relative lg:rounded-sm overflow-y-auto">
