@@ -34,7 +34,7 @@ const EventCard = ({ event }) => {
     }
 
     const handleNavigate = () => {
-        navigate(`events/${event._id}`);
+        navigate(`/events/${event._id}`);
     }
 
     return (

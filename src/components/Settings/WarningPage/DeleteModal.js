@@ -31,7 +31,7 @@ const DeleteModal = ({ onDeleteClose }) => {
     return (
         isLoading ? <Spinner /> :
             <div onClick={onDeleteClose} id="backdrop" className="fixed z-50 inset-0 flex items-center justify-center bg-opacity-30 backdrop-blur-sm">
-                <div className="bg-slate-100 text-center m-4 font-semibold border-2 border-black rounded-lg p-2">
+                <div className="bg-slate-100 text-center m-4 font-semibold border-2 border-black rounded-lg p-2 transform translate-y-0 transition-transform duration-300 ease-in-out">
                     <WarningLogo size={8} color={'red'} />
                     <div>
                         Are you sure you want to delete your account? Remember, there's no going back!
