@@ -78,9 +78,7 @@ const Events = () => {
 
         if (!searchedEvents) return setFoundEvents(eventsAfterFilter);
 
-        if (typeof searchedValue === 'string') return setFoundEvents(eventsAfterFilter.filter(x => x.title.toLowerCase().includes(searchedValue.toLowerCase())));
-
-        if (!searchedEvents) return setFoundEvents(eventsAfterFilter);
+        return setFoundEvents(eventsAfterFilter.filter(x => x.title.toLowerCase().includes(searchedValue.toLowerCase())));
     }
 
     return (
