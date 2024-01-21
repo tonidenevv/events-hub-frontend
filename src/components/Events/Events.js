@@ -96,7 +96,7 @@ const Events = () => {
                         }
                     </div>
                     <ScrollTopButton />
-                    {showFilterModal && <FilterModal events={events} getFilteredEvents={getFilteredEvents} closeFilterModal={closeFilterModal} priceSliderValues={priceSliderValues} setPriceSliderValues={setPriceSliderValues} priceInputValues={priceInputValues} setPriceInputValues={setPriceInputValues} daysLeftSelectedRadio={daysLeftSelectedRadio} setDaysLeftSelectedRadio={setDaysLeftSelectedRadio} attendingCountSelectedRadio={attendingCountSelectedRadio} setAttendingCountSelectedRadio={setAttendingCountSelectedRadio} expiredSelectedRadio={expiredSelectedRadio} setExpiredSelectedRadio={setExpiredSelectedRadio} />}
+                    {showFilterModal && <FilterModal events={events} getFilteredEvents={getFilteredEvents} closeFilterModal={closeFilterModal} MIN_MAX_PRICE={MIN_MAX_PRICE} priceSliderValues={priceSliderValues} setPriceSliderValues={setPriceSliderValues} priceInputValues={priceInputValues} setPriceInputValues={setPriceInputValues} daysLeftSelectedRadio={daysLeftSelectedRadio} setDaysLeftSelectedRadio={setDaysLeftSelectedRadio} attendingCountSelectedRadio={attendingCountSelectedRadio} setAttendingCountSelectedRadio={setAttendingCountSelectedRadio} expiredSelectedRadio={expiredSelectedRadio} setExpiredSelectedRadio={setExpiredSelectedRadio} />}
                 </div>
             </>
     )
