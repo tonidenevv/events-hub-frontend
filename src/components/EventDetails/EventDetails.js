@@ -8,8 +8,8 @@ import DetailsFooter from "./DetailsFooter/DetailsFooter";
 import * as userService from '../../services/userService';
 import LargeDevicesInfoContainer from "./LargeDevicesInfoContainer/LargeDevicesInfoContainer";
 import CreatedBy from "./CreatedBy/CreatedBy";
-import EventDescription from "./EventDescription/EventDescription";
 import TitleImageField from "./TitleImageField/TitleImageField";
+import EventInfoField from "./EventDescription/EventDescription";
 
 const EventDetails = () => {
     const [event, setEvent] = useState({});
@@ -46,6 +46,8 @@ const EventDetails = () => {
             })
     }, [eventId, navigate, showToast]);
 
+    console.log(event);
+
     return (
         isLoading ? <Spinner /> :
             <>
@@ -56,12 +58,12 @@ const EventDetails = () => {
                     <div className="flex col-span-5 items-start">
                         <div className="w-5/6 lg:ml-16 ml-6">
                             <CreatedBy avatar={eventCreator?.avatarUrl} gender={eventCreator.gender} username={eventCreator.username} />
-                            <EventDescription description={event.description} />
+                            <EventInfoField header={"About The Event"} paragraph={event.description} />
                         </div>
                     </div>
-                    <LargeDevicesInfoContainer ticketPrice={event.ticketPrice} date={date} />
+                    <LargeDevicesInfoContainer ticketPrice={event.ticketPrice} attendingCount={event.attending.length} date={date} />
                 </div>
-                <DetailsFooter date={date} ticketPrice={event.ticketPrice} />
+                <DetailsFooter date={date} attendingCount={event.attending.length} ticketPrice={event.ticketPrice} />
             </>
     )
 }
