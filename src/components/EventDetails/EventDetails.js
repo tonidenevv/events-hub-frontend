@@ -6,6 +6,7 @@ import { ToastContext } from "../../contexts/ToastContext";
 import Spinner from "../Spinner/Spinner";
 import ChevronLeft from "../svg/ChevronLeft";
 import DetailsFooter from "./DetailsFooter/DetailsFooter";
+import { format } from "date-fns";
 
 const EventDetails = () => {
     const [event, setEvent] = useState({});
@@ -15,9 +16,6 @@ const EventDetails = () => {
 
     const { showToast } = useContext(ToastContext);
     const navigate = useNavigate();
-
-    // console.log(format(event.eventDate, "yyyy-MM-dd"))
-    // console.log(event.eventDate);
 
     useEffect(() => {
         setIsLoading(true);
@@ -55,10 +53,56 @@ const EventDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex items-start mt-10">
-                    <div className="w-5/6 lg:ml-16 ml-6">
-                        <div className="font-bold text-2xl lg:text-4xl">About The Event</div>
-                        <div className="font-semibold text-2xl text-gray-700 mt-4 lg:text-3xl">{event.description}</div>
+                <div className="grid lg:grid-cols-8 mt-10 grid-cols-1">
+                    <div className="flex col-span-5 items-start">
+                        <div className="w-5/6 lg:ml-16 ml-6">
+                            <div className="border-t-2 border-b-2 border-gray-300 p-3">
+                                dasd
+                            </div>
+                            <div className="border-b-2 border-gray-300 p-3">
+                                <div className="font-bold text-2xl lg:text-4xl">About The Event</div>
+                                <div className="font-semibold text-xl text-gray-700 mt-4 lg:text-2xl">{event.description}</div>
+                            </div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                            <div>dasdsa</div>
+                        </div>
+                    </div>
+                    <div className="bg-gray-50 relative mx-16 w-96 col-span-3 h-52 hidden flex-col lg:flex border-2 rounded-xl border-black shadow-2xl items-center justify-center">
+                        <div className="grid grid-cols-2 my-7 gap-16">
+                            <div className="font-extrabold text-2xl flex items-center justify-center">
+                                ${event.ticketPrice} <span className="font-normal ml-2 text-lg">total</span>
+                            </div>
+                            <div className="flex font-bold text-lg items-center justify-center">{format(date, 'd MMM y')}</div>
+                        </div>
+                        <button className="w-80 my-7 bg-pink-700 rounded-lg font-semibold text-white text-lg px-1 py-3 hover:bg-pink-800 ease-in-out duration-150">Attend</button>
                     </div>
                 </div>
                 <DetailsFooter date={date} ticketPrice={event.ticketPrice} />

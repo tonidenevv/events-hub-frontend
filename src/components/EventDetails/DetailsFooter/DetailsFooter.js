@@ -2,7 +2,7 @@ import { format } from "date-fns";
 
 const DetailsFooter = ({ date, ticketPrice }) => {
     return (
-        <div className="sticky bottom-0 border-t-2 p-3 shadow-2xl items-center border-gray-200 bg-white grid grid-cols-2">
+        <div className="sticky bottom-0 border-t-2 lg:hidden p-3 shadow-2xl items-center border-gray-200 bg-white grid grid-cols-2">
             <div className="font-semibold flex justify-center items-center flex-col text-lg lg:text-xl">
                 <div className="flex flex-col items-start">
                     <div>${ticketPrice}</div>
