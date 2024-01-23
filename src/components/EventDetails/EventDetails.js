@@ -7,9 +7,11 @@ import Spinner from "../Spinner/Spinner";
 import ChevronLeft from "../svg/ChevronLeft";
 import DetailsFooter from "./DetailsFooter/DetailsFooter";
 import { format } from "date-fns";
+import * as userService from '../../services/userService';
 
 const EventDetails = () => {
     const [event, setEvent] = useState({});
+    const [eventCreator, setEventCreator] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [date, setDate] = useState(new Date());
     const { eventId } = useParams();
@@ -22,9 +24,18 @@ const EventDetails = () => {
         eventService.getOne(eventId)
             .then(res => {
                 if (res.message) return navigate('/404')
-                setIsLoading(false);
                 setEvent(res);
                 setDate(res.eventDate);
+                userService.getBasicInfo(res._ownerId)
+                    .then(res => {
+                        setIsLoading(false);
+                        setEventCreator(res);
+                    })
+                    .catch(err => {
+                        setIsLoading(false);
+                        showToast('Something went wrong. Please try again later.', true);
+                        navigate('/');
+                    })
             })
             .catch(err => {
                 setIsLoading(false);
@@ -56,53 +67,23 @@ const EventDetails = () => {
                 <div className="grid lg:grid-cols-8 mt-10 grid-cols-1">
                     <div className="flex col-span-5 items-start">
                         <div className="w-5/6 lg:ml-16 ml-6">
-                            <div className="border-t-2 border-b-2 border-gray-300 p-3">
-                                dasd
+                            <div className="border-t-2 font-bold text-xl border-b-2 border-gray-300 p-3">
+                                Created By
                             </div>
                             <div className="border-b-2 border-gray-300 p-3">
                                 <div className="font-bold text-2xl lg:text-4xl">About The Event</div>
                                 <div className="font-semibold text-xl text-gray-700 mt-4 lg:text-2xl">{event.description}</div>
                             </div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
-                            <div>dasdsa</div>
                         </div>
                     </div>
-                    <div className="bg-gray-50 relative mx-16 w-96 col-span-3 h-52 hidden flex-col lg:flex border-2 rounded-xl border-black shadow-2xl items-center justify-center">
-                        <div className="grid grid-cols-2 my-7 gap-16">
+                    <div className="bg-gray-50 relative mx-16 w-96 col-span-3 h-40 hidden flex-col lg:flex border-2 rounded-xl border-black shadow-2xl items-center justify-center">
+                        <div className="grid grid-cols-2 mb-3 mt-12 gap-16">
                             <div className="font-extrabold text-2xl flex items-center justify-center">
                                 ${event.ticketPrice} <span className="font-normal ml-2 text-lg">total</span>
                             </div>
                             <div className="flex font-bold text-lg items-center justify-center">{format(date, 'd MMM y')}</div>
                         </div>
-                        <button className="w-80 my-7 bg-pink-700 rounded-lg font-semibold text-white text-lg px-1 py-3 hover:bg-pink-800 ease-in-out duration-150">Attend</button>
+                        <button className="w-80 mt-3 mb-6 bg-pink-700 rounded-lg font-semibold text-white text-lg px-1 py-3 hover:bg-pink-800 ease-in-out duration-150">Attend</button>
                     </div>
                 </div>
                 <DetailsFooter date={date} ticketPrice={event.ticketPrice} />

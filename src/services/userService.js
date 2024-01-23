@@ -1,3 +1,4 @@
+import responseHandler from "../helpers/responseHandler";
 const BASE_URL = 'http://localhost:5000/users';
 
 export const getOne = (userToken, userId) => {
@@ -6,15 +7,7 @@ export const getOne = (userToken, userId) => {
             Authorize: userToken
         }
     })
-        .then(res => {
-            const isResponseOkay = res.ok;
-            return res.json().then(res => {
-                if (!isResponseOkay && !res.message) {
-                    throw new Error(`Status: ${res.status}`);
-                }
-                return res;
-            });
-        });
+        .then(res => responseHandler(res));
 }
 
 export const deleteOne = (userToken, userId) => {
@@ -24,15 +17,7 @@ export const deleteOne = (userToken, userId) => {
             Authorize: userToken,
         },
     })
-        .then(res => {
-            const isResponseOkay = res.ok;
-            return res.json().then(res => {
-                if (!isResponseOkay && !res.message) {
-                    throw new Error(`Status: ${res.status}`);
-                }
-                return res;
-            });
-        });
+        .then(res => responseHandler(res));
 }
 
 export const changeOne = (userToken, userId, data) => {
@@ -43,13 +28,10 @@ export const changeOne = (userToken, userId, data) => {
         },
         body: data,
     })
-        .then(res => {
-            const isResponseOkay = res.ok;
-            return res.json().then(res => {
-                if (!isResponseOkay && !res.message) {
-                    throw new Error(`Status: ${res.status}`);
-                }
-                return res;
-            });
-        });
+        .then(res => responseHandler(res));
+}
+
+export const getBasicInfo = (userId) => {
+    return fetch(`${BASE_URL}/${userId}/basic`)
+        .then(res => responseHandler(res));
 }

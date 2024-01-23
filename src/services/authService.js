@@ -1,3 +1,5 @@
+import responseHandler from "../helpers/responseHandler";
+
 const BASE_URL = 'http://localhost:5000/auth';
 
 export const register = (data) => {
@@ -6,15 +8,7 @@ export const register = (data) => {
         headers: {},
         body: data,
     })
-        .then(res => {
-            const isResponseOkay = res.ok;
-            return res.json().then(res => {
-                if (!isResponseOkay && !res.message) {
-                    throw new Error(`Status: ${res.status}`);
-                }
-                return res;
-            });
-        })
+        .then(res => responseHandler(res));
 };
 
 export const login = (data) => {
@@ -25,15 +19,7 @@ export const login = (data) => {
         },
         body: JSON.stringify(data),
     })
-        .then(res => {
-            const isResponseOkay = res.ok;
-            return res.json().then(res => {
-                if (!isResponseOkay && !res.message) {
-                    throw new Error(`Status: ${res.status}`);
-                }
-                return res;
-            });
-        });
+        .then(res => responseHandler(res));
 };
 
 export const logout = (token) => {
@@ -43,15 +29,7 @@ export const logout = (token) => {
             Authorize: token,
         },
     })
-        .then(res => {
-            const isResponseOkay = res.ok;
-            return res.json().then(res => {
-                if (!isResponseOkay && !res.message) {
-                    throw new Error(`Status: ${res.status}`);
-                }
-                return res;
-            });
-        });
+        .then(res => responseHandler(res));
 }
 
 export const changePassword = (token, data) => {
@@ -63,13 +41,5 @@ export const changePassword = (token, data) => {
         },
         body: JSON.stringify(data),
     })
-        .then(res => {
-            const isResponseOkay = res.ok;
-            return res.json().then(res => {
-                if (!isResponseOkay && !res.message) {
-                    throw new Error(`Status: ${res.status}`);
-                }
-                return res;
-            });
-        });
+        .then(res => responseHandler(res));
 }
