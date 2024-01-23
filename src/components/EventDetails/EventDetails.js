@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import * as eventService from '../../services/eventService';
 import { useContext } from "react";
 import { ToastContext } from "../../contexts/ToastContext";
+import { AuthContext } from '../../contexts/AuthContext';
 import Spinner from "../Spinner/Spinner";
 import DetailsFooter from "./DetailsFooter/DetailsFooter";
 import * as userService from '../../services/userService';
@@ -16,9 +17,12 @@ const EventDetails = () => {
     const [eventCreator, setEventCreator] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [date, setDate] = useState(new Date());
+    const [isOwner, setIsOwner] = useState(false);
     const { eventId } = useParams();
 
     const { showToast } = useContext(ToastContext);
+    const { user } = useContext(AuthContext);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,6 +32,7 @@ const EventDetails = () => {
                 if (res.message) return navigate('/404')
                 setEvent(res);
                 setDate(res.eventDate);
+                setIsOwner(res._ownerId === user?._id);
                 userService.getBasicInfo(res._ownerId)
                     .then(res => {
                         setIsLoading(false);
@@ -44,9 +49,7 @@ const EventDetails = () => {
                 showToast('Something went wrong. Please try again later.', true);
                 navigate('/');
             })
-    }, [eventId, navigate, showToast]);
-
-    console.log(event);
+    }, [eventId, navigate, showToast, user?._id]);
 
     return (
         isLoading ? <Spinner /> :
@@ -57,13 +60,13 @@ const EventDetails = () => {
                 <div className="grid lg:grid-cols-8 mt-10 grid-cols-1">
                     <div className="flex col-span-5 items-start">
                         <div className="w-5/6 lg:ml-16 ml-6">
-                            <CreatedBy avatar={eventCreator?.avatarUrl} gender={eventCreator.gender} username={eventCreator.username} />
+                            <CreatedBy avatar={eventCreator?.avatarUrl} isOwner={isOwner} gender={eventCreator.gender} username={eventCreator.username} />
                             <EventInfoField header={"About The Event"} paragraph={event.description} />
                         </div>
                     </div>
-                    <LargeDevicesInfoContainer ticketPrice={event.ticketPrice} attendingCount={event.attending.length} date={date} />
+                    <LargeDevicesInfoContainer isOwner={isOwner} ticketPrice={event.ticketPrice} attendingCount={event.attending?.length} date={date} />
                 </div>
-                <DetailsFooter date={date} attendingCount={event.attending.length} ticketPrice={event.ticketPrice} />
+                <DetailsFooter isOwner={isOwner} date={date} attendingCount={event.attending?.length} ticketPrice={event.ticketPrice} />
             </>
     )
 }
