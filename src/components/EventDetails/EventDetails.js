@@ -26,9 +26,11 @@ const EventDetails = () => {
                 if (res.message) return navigate('/404')
                 setEvent(res);
                 setDate(res.eventDate);
+                // setIsLoading(false);
                 userService.getBasicInfo(res._ownerId)
                     .then(res => {
                         setIsLoading(false);
+                        console.log(res);
                         setEventCreator(res);
                     })
                     .catch(err => {
@@ -48,8 +50,6 @@ const EventDetails = () => {
         navigate('/events');
     }
 
-    console.log(event);
-
     return (
         isLoading ? <Spinner /> :
             <>
@@ -67,8 +67,11 @@ const EventDetails = () => {
                 <div className="grid lg:grid-cols-8 mt-10 grid-cols-1">
                     <div className="flex col-span-5 items-start">
                         <div className="w-5/6 lg:ml-16 ml-6">
-                            <div className="border-t-2 font-bold text-xl border-b-2 border-gray-300 p-3">
-                                Created By
+                            <div className="border-t-2 flex items-center gap-4 font-bold text-xl border-b-2 border-gray-300 p-3">
+                                <img className="w-12 h-12 rounded-full" src={eventCreator.avatarUrl ? eventCreator.avatarUrl : eventCreator.gender === 'male' ? '/male.jpg' : '/female.jpg'} alt="creator" />
+                                <div>
+                                    Created by {eventCreator.username}
+                                </div>
                             </div>
                             <div className="border-b-2 border-gray-300 p-3">
                                 <div className="font-bold text-2xl lg:text-4xl">About The Event</div>
