@@ -11,7 +11,7 @@ const LargeDevicesInfoContainer = ({ ticketPrice, date, attendingCount, isOwner 
             </div>
             <div className="flex flex-col items-center justify-center">
                 <button disabled={isOwner} className={`w-80 mt-3 mb-2 bg-pink-700 rounded-lg font-semibold text-white text-lg px-1 py-3 hover:bg-pink-800 ease-in-out duration-150 ${isOwner && 'cursor-not-allowed brightness-75'}`}>{isOwner ? 'You are the creator of the event!' : 'Attend'}</button>
-                <div className="font-semibold text-lg m-3">{attendingCount === 0 && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
+                <div className="font-semibold text-lg mt-1 m-3">{attendingCount === 0 && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
             </div>
         </div>
     )

@@ -18,6 +18,7 @@ import CommentSection from "./CommentSection/CommentSection";
 const EventDetails = () => {
     const [event, setEvent] = useState({});
     const [eventCreator, setEventCreator] = useState({});
+    const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [date, setDate] = useState(new Date());
     const [isOwner, setIsOwner] = useState(false);
@@ -35,6 +36,7 @@ const EventDetails = () => {
                 if (res.message) return navigate('/404')
                 setEvent(res);
                 setDate(res.eventDate);
+                setComments(res.comments);
                 setIsOwner(res._ownerId === user?._id);
                 userService.getBasicInfo(res._ownerId)
                     .then(res => {
@@ -53,6 +55,8 @@ const EventDetails = () => {
                 navigate('/');
             })
     }, [eventId, navigate, showToast, user?._id]);
+
+    const handleComment = (commentInfo) => setComments(old => [commentInfo, ...old]);
 
     return (
         isLoading ? <Spinner /> :
@@ -75,7 +79,7 @@ const EventDetails = () => {
                     </div>
                     <LargeDevicesInfoContainer isOwner={isOwner} ticketPrice={event.ticketPrice} attendingCount={event.attending?.length} date={date} />
                 </div>
-                <CommentSection comments={event.comments} />
+                <CommentSection comments={comments} handleComment={handleComment} event={event} />
                 <DetailsFooter isOwner={isOwner} date={date} attendingCount={event.attending?.length} ticketPrice={event.ticketPrice} />
             </>
     )
