@@ -1,7 +1,12 @@
 import { differenceInCalendarDays, differenceInSeconds, differenceInMinutes, differenceInWeeks, differenceInMonths, differenceInYears, differenceInHours } from "date-fns";
+import { useNavigate } from "react-router-dom";
 import LikeLogo from "../../../svg/LikeLogo";
-const Comment = ({ comment, isOwner, user }) => {
+import * as commentService from '../../../../services/commentService';
+
+const Comment = ({ comment, isOwner, user, showToast }) => {
     const { _ownerId: creator } = comment;
+
+    const navigate = useNavigate();
 
     const timeSinceComment = (commentCreatedAt) => {
         const secondsDifference = differenceInSeconds(new Date(), commentCreatedAt);
@@ -27,6 +32,17 @@ const Comment = ({ comment, isOwner, user }) => {
         return (`${yearsDifference} ${yearsDifference === 1 ? 'year' : 'years'} ago`);
     }
 
+    const handleLike = () => {
+        commentService.like(user.token, comment._id)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                showToast('There was an error processing your request. Please try again later.', true);
+                navigate('/');
+            })
+    }
+
     return (
         <>
             <div className="flex items-center mt-5 mb-3">
@@ -38,7 +54,7 @@ const Comment = ({ comment, isOwner, user }) => {
                     </div>
                     <div className="text-lg font-normal">{comment.commentText}</div>
                 </div>
-                <button disabled={isOwner || !user} className={`text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2 ${isOwner || !user ? 'cursor-not-allowed' : ''}`}>
+                <button onClick={handleLike} disabled={isOwner || !user} className={`text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2 ${isOwner || !user ? 'cursor-not-allowed' : ''}`}>
                     <div className="hover:text-gray-500"><LikeLogo /></div>
                     <div>{comment.likes?.length}</div>
                 </button>

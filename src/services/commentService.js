@@ -12,3 +12,13 @@ export const create = (accessToken, commentText, eventId) => {
     })
         .then(res => responseHandler(res));
 }
+
+export const like = (accessToken, commentId) => {
+    return fetch(`${BASE_URL}/${commentId}/like`, {
+        method: 'POST',
+        headers: {
+            Authorize: accessToken,
+        }
+    })
+        .then(res => responseHandler(res));
+}
