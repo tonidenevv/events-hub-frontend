@@ -29,7 +29,7 @@ const CommentSection = ({ comments, event, handleComment, isOwner }) => {
                 if (res.message) return;
                 setIsLoading(false);
                 handleComment(res);
-                console.log(res);
+                setComment('');
             })
             .catch(err => {
                 setIsLoading(false);
