@@ -29,9 +29,9 @@ const Comment = ({ comment }) => {
 
     return (
         <>
-            <div className="flex items-center mt-5">
+            <div className="flex items-center mt-5 mb-3">
                 <img className="w-12 h-12 rounded-full mr-2" src={creator.avatarUrl} alt="avatar" />
-                <div className="flex flex-col">
+                <div className="flex lg:w-64 w-56 flex-col">
                     <div className="text-base flex gap-7">
                         <div className="font-semibold text-gray-950">{creator.username}</div>
                         <div className="font-normal text-gray-700">{timeSinceComment(comment.creationDate)}</div>
