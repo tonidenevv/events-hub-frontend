@@ -79,7 +79,7 @@ const EventDetails = () => {
                     </div>
                     <LargeDevicesInfoContainer isOwner={isOwner} ticketPrice={event.ticketPrice} attendingCount={event.attending?.length} date={date} />
                 </div>
-                <CommentSection comments={comments} handleComment={handleComment} event={event} />
+                <CommentSection isOwner={isOwner} comments={comments} handleComment={handleComment} event={event} />
                 <DetailsFooter isOwner={isOwner} date={date} attendingCount={event.attending?.length} ticketPrice={event.ticketPrice} />
             </>
     )

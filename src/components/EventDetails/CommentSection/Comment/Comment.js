@@ -1,6 +1,6 @@
 import { differenceInCalendarDays, differenceInSeconds, differenceInMinutes, differenceInWeeks, differenceInMonths, differenceInYears, differenceInHours } from "date-fns";
 import LikeLogo from "../../../svg/LikeLogo";
-const Comment = ({ comment }) => {
+const Comment = ({ comment, isOwner, user }) => {
     const { _ownerId: creator } = comment;
 
     const timeSinceComment = (commentCreatedAt) => {
@@ -38,7 +38,7 @@ const Comment = ({ comment }) => {
                     </div>
                     <div className="text-lg font-normal">{comment.commentText}</div>
                 </div>
-                <button className="text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2">
+                <button disabled={isOwner || !user} className={`text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2 ${isOwner || !user ? 'cursor-not-allowed' : ''}`}>
                     <div className="hover:text-gray-500"><LikeLogo /></div>
                     <div>{comment.likes?.length}</div>
                 </button>
