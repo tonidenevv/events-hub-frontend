@@ -11,6 +11,9 @@ import LargeDevicesInfoContainer from "./LargeDevicesInfoContainer/LargeDevicesI
 import CreatedBy from "./CreatedBy/CreatedBy";
 import TitleImageField from "./TitleImageField/TitleImageField";
 import EventInfoField from "./EventDescription/EventDescription";
+import DeleteButton from "./DeleteButton/DeleteButton";
+import EditButton from "./EditButton/EditButton";
+import CommentSection from "./CommentSection/CommentSection";
 
 const EventDetails = () => {
     const [event, setEvent] = useState({});
@@ -57,6 +60,12 @@ const EventDetails = () => {
                 <div className="flex justify-center relative">
                     <TitleImageField title={event.title} image={event.imageUrl} />
                 </div>
+                {isOwner &&
+                    <div className="flex items-center lg:gap-32 gap-16 justify-center mt-8">
+                        <EditButton />
+                        <DeleteButton />
+                    </div>
+                }
                 <div className="grid lg:grid-cols-8 mt-10 grid-cols-1">
                     <div className="flex col-span-5 items-start">
                         <div className="w-5/6 lg:ml-16 ml-6">
@@ -66,6 +75,7 @@ const EventDetails = () => {
                     </div>
                     <LargeDevicesInfoContainer isOwner={isOwner} ticketPrice={event.ticketPrice} attendingCount={event.attending?.length} date={date} />
                 </div>
+                <CommentSection comments={event.comments} />
                 <DetailsFooter isOwner={isOwner} date={date} attendingCount={event.attending?.length} ticketPrice={event.ticketPrice} />
             </>
     )
