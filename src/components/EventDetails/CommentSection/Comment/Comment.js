@@ -2,11 +2,17 @@ import { differenceInCalendarDays, differenceInSeconds, differenceInMinutes, dif
 import { useNavigate } from "react-router-dom";
 import LikeLogo from "../../../svg/LikeLogo";
 import * as commentService from '../../../../services/commentService';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Comment = ({ comment, isOwner, user, showToast }) => {
     const { _ownerId: creator } = comment;
     const [likes, setLikes] = useState(comment.likes?.length);
+    const [hasLiked, setHasLiked] = useState(false);
+
+    useEffect(() => {
+        if (user) setHasLiked(comment.likes.some(x => x === user._id));
+    }, [comment.likes, user]);
+
 
     const navigate = useNavigate();
 
@@ -38,6 +44,7 @@ const Comment = ({ comment, isOwner, user, showToast }) => {
         commentService.like(user.token, comment._id)
             .then(res => {
                 setLikes(res.likes.length);
+                setHasLiked(res.likes.some(x => x === user._id));
             })
             .catch(err => {
                 showToast('There was an error processing your request. Please try again later.', true);
@@ -57,7 +64,7 @@ const Comment = ({ comment, isOwner, user, showToast }) => {
                     <div className="text-lg font-normal">{comment.commentText}</div>
                 </div>
                 <button onClick={handleLike} disabled={!user} className={`text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2 ${!user ? 'cursor-not-allowed' : ''}`}>
-                    <div className="hover:text-gray-500"><LikeLogo /></div>
+                    <div className={`hover:text-gray-500 ${hasLiked ? 'text-blue-500' : 'text-black'}`}><LikeLogo /></div>
                     <div>{likes}</div>
                 </button>
             </div>
