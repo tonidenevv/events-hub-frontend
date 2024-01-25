@@ -35,7 +35,7 @@ const LargeDevicesInfoContainer = ({ ticketPrice, date, showToast, isOwner, user
                 <div className="flex font-bold text-lg items-center justify-center">{format(date, 'd MMM y')}</div>
             </div>
             <div className="flex flex-col items-center justify-center">
-                <button onClick={handleAttend} disabled={isOwner} className={attendButtonClasses}>{isOwner ? 'You are the creator of the event!' : isAttending ? 'Stop Attending' : 'Attend'}</button>
+                <button onClick={() => handleAttend(user, eventId)} disabled={isOwner} className={attendButtonClasses}>{isOwner ? 'You are the creator of the event!' : isAttending ? 'Stop Attending' : 'Attend'}</button>
                 <div className="font-semibold text-lg mt-1 m-3">{attendingCount === 0 && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
             </div>
         </div>
