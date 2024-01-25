@@ -56,7 +56,7 @@ const Comment = ({ comment, isOwner, user, showToast }) => {
                     </div>
                     <div className="text-lg font-normal">{comment.commentText}</div>
                 </div>
-                <button onClick={handleLike} disabled={isOwner || !user} className={`text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2 ${isOwner || !user ? 'cursor-not-allowed' : ''}`}>
+                <button onClick={handleLike} disabled={!user} className={`text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2 ${!user ? 'cursor-not-allowed' : ''}`}>
                     <div className="hover:text-gray-500"><LikeLogo /></div>
                     <div>{likes}</div>
                 </button>
