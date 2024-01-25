@@ -1,29 +1,7 @@
 import { format } from "date-fns";
-import * as eventService from '../../../services/eventService';
-import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
 
-const LargeDevicesInfoContainer = ({ ticketPrice, date, showToast, isOwner, user, eventAttending }) => {
+const LargeDevicesInfoContainer = ({ handleAttend, isAttending, attendingCount, ticketPrice, date, showToast, isOwner, user, eventAttending }) => {
 
-    const [isAttending, setIsAttending] = useState(eventAttending?.some(x => x === user._id));
-    const [attendingCount, setAttendingCount] = useState(eventAttending?.length);
-
-    const { eventId } = useParams();
-    const navigate = useNavigate();
-
-    const handleAttend = () => {
-        if (!user) return navigate('/login');
-
-        eventService.attend(user.token, eventId)
-            .then(res => {
-                setIsAttending(res.attending.some(x => x === user._id));
-                setAttendingCount(res.attending.length);
-            })
-            .catch(err => {
-                showToast('Something went wrong. Please try again later.', true);
-                navigate('/');
-            })
-    }
     const attendButtonClasses = `w-80 mt-3 mb-2 rounded-lg font-semibold text-white text-lg px-1 py-3 hover:bg-pink-800 ease-in-out duration-150 ${isOwner && 'cursor-not-allowed brightness-75'} ${isAttending ? 'bg-pink-700' : 'bg-pink-700'}`;
 
     return (
@@ -35,8 +13,8 @@ const LargeDevicesInfoContainer = ({ ticketPrice, date, showToast, isOwner, user
                 <div className="flex font-bold text-lg items-center justify-center">{format(date, 'd MMM y')}</div>
             </div>
             <div className="flex flex-col items-center justify-center">
-                <button onClick={() => handleAttend(user, eventId)} disabled={isOwner} className={attendButtonClasses}>{isOwner ? 'You are the creator of the event!' : isAttending ? 'Stop Attending' : 'Attend'}</button>
-                <div className="font-semibold text-lg mt-1 m-3">{attendingCount === 0 && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
+                <button onClick={handleAttend} disabled={isOwner} className={attendButtonClasses}>{isOwner ? 'You are the creator of the event!' : isAttending ? 'Stop Attending' : 'Attend'}</button>
+                <div className="font-semibold text-lg mt-1 m-3">{!attendingCount && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
             </div>
         </div>
     )

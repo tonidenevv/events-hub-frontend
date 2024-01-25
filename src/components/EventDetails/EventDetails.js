@@ -27,6 +27,9 @@ const EventDetails = () => {
     const { showToast } = useContext(ToastContext);
     const { user } = useContext(AuthContext);
 
+    const [isAttending, setIsAttending] = useState(false);
+    const [attendingCount, setAttendingCount] = useState(0);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,6 +41,8 @@ const EventDetails = () => {
                 setDate(res.eventDate);
                 setComments(res.comments);
                 setIsOwner(res._ownerId === user?._id);
+                setIsAttending(res.attending.some(x => x === user?._id));
+                setAttendingCount(res.attending.length);
                 userService.getBasicInfo(res._ownerId)
                     .then(res => {
                         setIsLoading(false);
@@ -58,6 +63,20 @@ const EventDetails = () => {
 
     const handleComment = (commentInfo) => setComments(old => [commentInfo, ...old]);
 
+    const handleAttend = () => {
+        if (!user) return navigate('/login');
+
+        eventService.attend(user.token, eventId)
+            .then(res => {
+                setIsAttending(res.attending.some(x => x === user._id));
+                setAttendingCount(res.attending.length);
+            })
+            .catch(err => {
+                showToast('Something went wrong. Please try again later.', true);
+                navigate('/');
+            })
+    }
+
     return (
         isLoading ? <Spinner /> :
             <>
@@ -77,10 +96,10 @@ const EventDetails = () => {
                             <EventInfoField header={"About The Event"} paragraph={event.description} />
                         </div>
                     </div>
-                    <LargeDevicesInfoContainer isOwner={isOwner} eventAttending={event.attending} user={user} showToast={showToast} ticketPrice={event.ticketPrice} date={date} />
+                    <LargeDevicesInfoContainer handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} eventAttending={event.attending} user={user} showToast={showToast} ticketPrice={event.ticketPrice} date={date} />
                 </div>
                 <CommentSection isOwner={isOwner} comments={comments} handleComment={handleComment} event={event} />
-                <DetailsFooter isOwner={isOwner} date={date} user={user} eventAttending={event.attending} showToast={showToast} ticketPrice={event.ticketPrice} />
+                <DetailsFooter handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} date={date} user={user} eventAttending={event.attending} showToast={showToast} ticketPrice={event.ticketPrice} />
             </>
     )
 }
