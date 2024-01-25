@@ -14,6 +14,7 @@ import EventInfoField from "./EventDescription/EventDescription";
 import DeleteButton from "./DeleteButton/DeleteButton";
 import EditButton from "./EditButton/EditButton";
 import CommentSection from "./CommentSection/CommentSection";
+import ScrollTopButton from "../ScrollTopButton/ScrollTopButton";
 
 const EventDetails = () => {
     const [event, setEvent] = useState({});
@@ -99,6 +100,7 @@ const EventDetails = () => {
                 </div>
                 <CommentSection comments={comments} handleComment={handleComment} event={event} />
                 <DetailsFooter handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} date={date} ticketPrice={event.ticketPrice} />
+                <ScrollTopButton />
             </>
     )
 }

@@ -42,11 +42,7 @@ const CommentSection = ({ comments, event, handleComment }) => {
     const handleSort = (e) => {
         setSortBy(e.target.value);
 
-        console.log(e.target.value);
-
         if (e.target.value === 'likes') return comments.sort((a, b) => b.likes.length - a.likes.length);
-
-        console.log(comments);
 
         if (e.target.value === 'recent') return comments.sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
     }
