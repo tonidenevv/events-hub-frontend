@@ -23,12 +23,11 @@ const EventDetails = () => {
     const [date, setDate] = useState(new Date());
     const [isOwner, setIsOwner] = useState(false);
     const { eventId } = useParams();
+    const [isAttending, setIsAttending] = useState(false);
+    const [attendingCount, setAttendingCount] = useState(0);
 
     const { showToast } = useContext(ToastContext);
     const { user } = useContext(AuthContext);
-
-    const [isAttending, setIsAttending] = useState(false);
-    const [attendingCount, setAttendingCount] = useState(0);
 
     const navigate = useNavigate();
 
@@ -96,10 +95,10 @@ const EventDetails = () => {
                             <EventInfoField header={"About The Event"} paragraph={event.description} />
                         </div>
                     </div>
-                    <LargeDevicesInfoContainer handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} eventAttending={event.attending} user={user} showToast={showToast} ticketPrice={event.ticketPrice} date={date} />
+                    <LargeDevicesInfoContainer handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} ticketPrice={event.ticketPrice} date={date} />
                 </div>
-                <CommentSection isOwner={isOwner} comments={comments} handleComment={handleComment} event={event} />
-                <DetailsFooter handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} date={date} user={user} eventAttending={event.attending} showToast={showToast} ticketPrice={event.ticketPrice} />
+                <CommentSection comments={comments} handleComment={handleComment} event={event} />
+                <DetailsFooter handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} date={date} ticketPrice={event.ticketPrice} />
             </>
     )
 }

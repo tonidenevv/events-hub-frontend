@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-const LargeDevicesInfoContainer = ({ handleAttend, isAttending, attendingCount, ticketPrice, date, showToast, isOwner, user, eventAttending }) => {
+const LargeDevicesInfoContainer = ({ handleAttend, isAttending, attendingCount, ticketPrice, date, isOwner }) => {
 
     const attendButtonClasses = `w-80 mt-3 mb-2 rounded-lg font-semibold text-white text-lg px-1 py-3 hover:bg-pink-800 ease-in-out duration-150 ${isOwner && 'cursor-not-allowed brightness-75'} ${isAttending ? 'bg-pink-700' : 'bg-pink-700'}`;
 

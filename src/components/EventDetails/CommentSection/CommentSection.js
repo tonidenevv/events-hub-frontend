@@ -9,10 +9,11 @@ import { useContext } from "react";
 import Spinner from "../../Spinner/Spinner";
 import Comment from "./Comment/Comment";
 
-const CommentSection = ({ comments, event, handleComment, isOwner }) => {
+const CommentSection = ({ comments, event, handleComment }) => {
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [sortBy, setSortBy] = useState('sort')
 
     const { user } = useContext(AuthContext);
     const { showToast } = useContext(ToastContext);
@@ -38,6 +39,18 @@ const CommentSection = ({ comments, event, handleComment, isOwner }) => {
             })
     }
 
+    const handleSort = (e) => {
+        setSortBy(e.target.value);
+
+        console.log(e.target.value);
+
+        if (e.target.value === 'likes') return comments.sort((a, b) => b.likes.length - a.likes.length);
+
+        console.log(comments);
+
+        if (e.target.value === 'recent') return comments.sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
+    }
+
     return (
         isLoading ? <Spinner /> :
             <div className="flex flex-col items-start lg:ml-20 ml-4 font-bold text-4xl mt-12">
@@ -52,6 +65,11 @@ const CommentSection = ({ comments, event, handleComment, isOwner }) => {
                     </div>
                     : <div className="text-base"><Link className="text-blue-500 mr-1" to="/login">Log in</Link>to be able to comment and like comments!</div>
                 }
+                <select value={sortBy} onChange={handleSort} className="text-base border-2 border-black rounded-lg" name="sorting" id="sorting">
+                    <option name="sort" disabled value="sort">Sort Comments</option>
+                    <option name="likes" value="likes">Most Likes</option>
+                    <option name="recent" value="recent">Most Recent</option>
+                </select>
                 {comments?.length === 0
                     ? <NoComments />
                     : <div className="grid grid-cols-1 mb-8">{comments?.map(x => <Comment showToast={showToast} user={user} comment={x} key={x._id} />)}</div>

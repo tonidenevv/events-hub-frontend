@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-const DetailsFooter = ({ handleAttend, isAttending, attendingCount, date, ticketPrice, eventAttending, user, isOwner, showToast }) => {
+const DetailsFooter = ({ handleAttend, isAttending, attendingCount, date, ticketPrice, isOwner }) => {
 
     return (
         <div className="sticky bottom-0 border-t-2 lg:hidden p-3 shadow-2xl items-center border-gray-200 bg-white grid grid-cols-2">
