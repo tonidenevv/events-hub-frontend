@@ -9,7 +9,7 @@ import { useContext } from "react";
 import Spinner from "../../Spinner/Spinner";
 import Comment from "./Comment/Comment";
 
-const CommentSection = ({ comments, event, handleComment }) => {
+const CommentSection = ({ comments, event, handleComment, showProfileModal }) => {
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -68,7 +68,7 @@ const CommentSection = ({ comments, event, handleComment }) => {
                 </select>
                 {comments?.length === 0
                     ? <NoComments />
-                    : <div className="grid grid-cols-1 mb-8">{comments?.map(x => <Comment showToast={showToast} user={user} comment={x} key={x._id} />)}</div>
+                    : <div className="grid grid-cols-1 mb-8">{comments?.map(x => <Comment showToast={showToast} showProfileModal={showProfileModal} user={user} comment={x} key={x._id} />)}</div>
                 }
             </div>
     )

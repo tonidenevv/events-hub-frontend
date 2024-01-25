@@ -15,8 +15,8 @@ const TitleImageField = ({ title, image }) => {
             <div className="lg:w-8/12 flex mt-8 lg:mt-0 items-center flex-col">
                 <div className="flex w-full h-full flex-col items-center">
                     <div className="lg:mt-10 mt-6 text-center order-2 lg:ml-0 ml-2 font-bold text-4xl lg:text-5xl">{title}</div>
-                    <div className="mt-4 rounded-2xl lg:order-2 lg:w-3/6 w-11/12 h-96 cursor-pointer">
-                        <img className="w-full h-full rounded-2xl shadow-2xl hover:brightness-75" src={image} alt="Event" />
+                    <div className="mt-4 rounded-2xl lg:order-2 lg:w-3/6 w-11/12 h-96">
+                        <img className="w-full h-full rounded-2xl shadow-2xl" src={image} alt="Event" />
                     </div>
                 </div>
             </div>

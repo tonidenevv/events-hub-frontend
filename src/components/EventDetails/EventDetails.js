@@ -14,7 +14,7 @@ import EventInfoField from "./EventDescription/EventDescription";
 import DeleteButton from "./DeleteButton/DeleteButton";
 import EditButton from "./EditButton/EditButton";
 import CommentSection from "./CommentSection/CommentSection";
-import ScrollTopButton from "../ScrollTopButton/ScrollTopButton";
+import ProfileModal from "./ProfileModal/ProfileModal";
 
 const EventDetails = () => {
     const [event, setEvent] = useState({});
@@ -26,6 +26,8 @@ const EventDetails = () => {
     const { eventId } = useParams();
     const [isAttending, setIsAttending] = useState(false);
     const [attendingCount, setAttendingCount] = useState(0);
+    const [profileModal, setProfileModal] = useState(false);
+    const [selectedModalUserId, setSelectedModalUserId] = useState('');
 
     const { showToast } = useContext(ToastContext);
     const { user } = useContext(AuthContext);
@@ -77,9 +79,15 @@ const EventDetails = () => {
             })
     }
 
+    const showProfileModal = (userId) => {
+        setSelectedModalUserId(userId);
+        setProfileModal(true);
+    }
+
     return (
         isLoading ? <Spinner /> :
             <>
+                {profileModal && <ProfileModal userId={selectedModalUserId} showToast={showToast} />}
                 <div className="flex justify-center relative">
                     <TitleImageField title={event.title} image={event.imageUrl} />
                 </div>
@@ -98,9 +106,8 @@ const EventDetails = () => {
                     </div>
                     <LargeDevicesInfoContainer handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} ticketPrice={event.ticketPrice} date={date} />
                 </div>
-                <CommentSection comments={comments} handleComment={handleComment} event={event} />
+                <CommentSection comments={comments} showProfileModal={showProfileModal} handleComment={handleComment} event={event} />
                 <DetailsFooter handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} date={date} ticketPrice={event.ticketPrice} />
-                <ScrollTopButton />
             </>
     )
 }

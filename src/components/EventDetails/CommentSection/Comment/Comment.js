@@ -1,7 +1,7 @@
 import { differenceInCalendarDays, differenceInSeconds, differenceInMinutes, differenceInWeeks, differenceInMonths, differenceInYears, differenceInHours } from "date-fns";
 import Like from "./Like/Like";
 
-const Comment = ({ comment, user }) => {
+const Comment = ({ comment, user, showProfileModal }) => {
     const { _ownerId: creator } = comment;
 
     const timeSinceComment = (commentCreatedAt) => {
@@ -31,7 +31,7 @@ const Comment = ({ comment, user }) => {
     return (
         <>
             <div className="flex items-center mt-5 mb-3">
-                <img className="w-12 h-12 rounded-full mr-2" src={creator.avatarUrl} alt="avatar" />
+                <img onClick={() => showProfileModal(creator._id)} className="w-12 h-12 rounded-full mr-2 hover:brightness-75 cursor-pointer" src={creator.avatarUrl} alt="avatar" />
                 <div className="flex lg:w-64 w-56 flex-col">
                     <div className="text-base flex gap-7">
                         <div className="font-semibold text-gray-950">{creator.username}</div>
