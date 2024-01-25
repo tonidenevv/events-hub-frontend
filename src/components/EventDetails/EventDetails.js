@@ -77,7 +77,7 @@ const EventDetails = () => {
                             <EventInfoField header={"About The Event"} paragraph={event.description} />
                         </div>
                     </div>
-                    <LargeDevicesInfoContainer isOwner={isOwner} ticketPrice={event.ticketPrice} attendingCount={event.attending?.length} date={date} />
+                    <LargeDevicesInfoContainer isOwner={isOwner} eventAttending={event.attending} user={user} showToast={showToast} ticketPrice={event.ticketPrice} date={date} />
                 </div>
                 <CommentSection isOwner={isOwner} comments={comments} handleComment={handleComment} event={event} />
                 <DetailsFooter isOwner={isOwner} date={date} attendingCount={event.attending?.length} ticketPrice={event.ticketPrice} />

@@ -54,7 +54,7 @@ const CommentSection = ({ comments, event, handleComment, isOwner }) => {
                 }
                 {comments?.length === 0
                     ? <NoComments />
-                    : <div className="grid grid-cols-1 mb-8">{comments?.map(x => <Comment showToast={showToast} isOwner={isOwner} user={user} comment={x} key={x._id} />)}</div>
+                    : <div className="grid grid-cols-1 mb-8">{comments?.map(x => <Comment showToast={showToast} user={user} comment={x} key={x._id} />)}</div>
                 }
             </div>
     )

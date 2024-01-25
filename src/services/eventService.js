@@ -21,3 +21,13 @@ export const createOne = (data, token) => {
     })
         .then(res => responseHandler(res));
 }
+
+export const attend = (token, eventId) => {
+    return fetch(`${BASE_URL}/${eventId}/attend`, {
+        method: 'POST',
+        headers: {
+            Authorize: token,
+        }
+    })
+        .then(res => responseHandler(res));
+}

@@ -1,20 +1,8 @@
 import { differenceInCalendarDays, differenceInSeconds, differenceInMinutes, differenceInWeeks, differenceInMonths, differenceInYears, differenceInHours } from "date-fns";
-import { useNavigate } from "react-router-dom";
-import LikeLogo from "../../../svg/LikeLogo";
-import * as commentService from '../../../../services/commentService';
-import { useEffect, useState } from "react";
+import Like from "./Like/Like";
 
-const Comment = ({ comment, isOwner, user, showToast }) => {
+const Comment = ({ comment, user }) => {
     const { _ownerId: creator } = comment;
-    const [likes, setLikes] = useState(comment.likes?.length);
-    const [hasLiked, setHasLiked] = useState(false);
-
-    useEffect(() => {
-        if (user) setHasLiked(comment.likes.some(x => x === user._id));
-    }, [comment.likes, user]);
-
-
-    const navigate = useNavigate();
 
     const timeSinceComment = (commentCreatedAt) => {
         const secondsDifference = differenceInSeconds(new Date(), commentCreatedAt);
@@ -40,18 +28,6 @@ const Comment = ({ comment, isOwner, user, showToast }) => {
         return (`${yearsDifference} ${yearsDifference === 1 ? 'year' : 'years'} ago`);
     }
 
-    const handleLike = () => {
-        commentService.like(user.token, comment._id)
-            .then(res => {
-                setLikes(res.likes.length);
-                setHasLiked(res.likes.some(x => x === user._id));
-            })
-            .catch(err => {
-                showToast('There was an error processing your request. Please try again later.', true);
-                navigate('/');
-            })
-    }
-
     return (
         <>
             <div className="flex items-center mt-5 mb-3">
@@ -63,10 +39,7 @@ const Comment = ({ comment, isOwner, user, showToast }) => {
                     </div>
                     <div className="text-lg font-normal">{comment.commentText}</div>
                 </div>
-                <button onClick={handleLike} disabled={!user} className={`text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2 ${!user ? 'cursor-not-allowed' : ''}`}>
-                    <div className={`hover:text-gray-500 ${hasLiked ? 'text-blue-500' : 'text-black'}`}><LikeLogo /></div>
-                    <div>{likes}</div>
-                </button>
+                <Like user={user} comment={comment} />
             </div>
         </>
     )
