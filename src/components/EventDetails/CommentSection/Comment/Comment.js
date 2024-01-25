@@ -2,9 +2,11 @@ import { differenceInCalendarDays, differenceInSeconds, differenceInMinutes, dif
 import { useNavigate } from "react-router-dom";
 import LikeLogo from "../../../svg/LikeLogo";
 import * as commentService from '../../../../services/commentService';
+import { useState } from "react";
 
 const Comment = ({ comment, isOwner, user, showToast }) => {
     const { _ownerId: creator } = comment;
+    const [likes, setLikes] = useState(comment.likes?.length);
 
     const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ const Comment = ({ comment, isOwner, user, showToast }) => {
     const handleLike = () => {
         commentService.like(user.token, comment._id)
             .then(res => {
-                console.log(res);
+                setLikes(res.likes.length);
             })
             .catch(err => {
                 showToast('There was an error processing your request. Please try again later.', true);
@@ -56,7 +58,7 @@ const Comment = ({ comment, isOwner, user, showToast }) => {
                 </div>
                 <button onClick={handleLike} disabled={isOwner || !user} className={`text-lg lg:ml-8 ml-3.5 flex items-center justify-center gap-1 lg:gap-2 ${isOwner || !user ? 'cursor-not-allowed' : ''}`}>
                     <div className="hover:text-gray-500"><LikeLogo /></div>
-                    <div>{comment.likes?.length}</div>
+                    <div>{likes}</div>
                 </button>
             </div>
         </>
