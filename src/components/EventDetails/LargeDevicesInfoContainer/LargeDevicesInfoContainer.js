@@ -1,8 +1,10 @@
-import { format } from "date-fns";
+import { format, differenceInCalendarDays } from "date-fns";
 
 const LargeDevicesInfoContainer = ({ handleAttend, isAttending, attendingCount, ticketPrice, date, isOwner }) => {
 
-    const attendButtonClasses = `w-80 mt-3 mb-2 rounded-lg font-semibold text-white text-lg px-1 py-3 hover:bg-pink-800 ease-in-out duration-150 ${isOwner && 'cursor-not-allowed brightness-75'} ${isAttending ? 'bg-pink-700' : 'bg-pink-700'}`;
+    const hasPassed = differenceInCalendarDays(date, Date.now()) < 0;
+
+    const attendButtonClasses = `w-80 mt-3 mb-2 rounded-lg font-semibold text-white text-lg px-1 py-3 hover:bg-pink-800 ease-in-out duration-150 ${(isOwner || hasPassed) && 'cursor-not-allowed brightness-75'} ${isAttending ? 'bg-pink-700' : 'bg-pink-700'}`;
 
     return (
         <div className="bg-gray-50 relative mx-16 w-96 col-span-3 h-52 hidden flex-col lg:flex border-2 rounded-xl border-black shadow-2xl items-center justify-center">
@@ -13,8 +15,8 @@ const LargeDevicesInfoContainer = ({ handleAttend, isAttending, attendingCount, 
                 <div className="flex font-bold text-lg items-center justify-center">{format(date, 'd MMM y')}</div>
             </div>
             <div className="flex flex-col items-center justify-center">
-                <button onClick={handleAttend} disabled={isOwner} className={attendButtonClasses}>{isOwner ? 'You are the creator of the event!' : isAttending ? 'Stop Attending' : 'Attend'}</button>
-                <div className="font-semibold text-lg mt-1 m-3">{!attendingCount && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
+                <button onClick={handleAttend} disabled={isOwner || hasPassed} className={attendButtonClasses}>{isOwner ? 'You are the creator of the event!' : hasPassed ? 'Event has already passed' : isAttending ? 'Stop Attending' : 'Attend'}</button>
+                <div className="font-semibold text-lg mt-1 m-3">{hasPassed ? `${attendingCount} people attended.` : !attendingCount && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
             </div>
         </div>
     )
