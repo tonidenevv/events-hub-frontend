@@ -84,10 +84,16 @@ const EventDetails = () => {
         setProfileModal(true);
     }
 
+    const handleCloseModal = (e) => {
+        if (e === 'close') return setProfileModal(false);
+
+        if (e.target.id === 'close' || e.target.id === 'backdrop') setProfileModal(false);
+    }
+
     return (
         isLoading ? <Spinner /> :
             <>
-                {profileModal && <ProfileModal userId={selectedModalUserId} showToast={showToast} />}
+                {profileModal && <ProfileModal handleCloseModal={handleCloseModal} userId={selectedModalUserId} showToast={showToast} />}
                 <div className="flex justify-center relative">
                     <TitleImageField title={event.title} image={event.imageUrl} />
                 </div>
@@ -100,7 +106,7 @@ const EventDetails = () => {
                 <div className="grid lg:grid-cols-8 mt-10 grid-cols-1">
                     <div className="flex col-span-5 items-start">
                         <div className="w-5/6 lg:ml-16 ml-6">
-                            <CreatedBy avatar={eventCreator?.avatarUrl} isOwner={isOwner} gender={eventCreator.gender} username={eventCreator.username} />
+                            <CreatedBy showProfileModal={showProfileModal} userId={eventCreator._id} avatar={eventCreator?.avatarUrl} isOwner={isOwner} gender={eventCreator.gender} username={eventCreator.username} />
                             <EventInfoField header={"About The Event"} paragraph={event.description} />
                         </div>
                     </div>

@@ -9,11 +9,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Slider = ({ events }) => {
+const Slider = ({ events, handleCloseModal }) => {
 
     const navigate = useNavigate();
 
-    const handleEventClick = (eventId) => navigate(`/events/${eventId}`);
+    const handleEventClick = (eventId) => {
+        handleCloseModal('close');
+        navigate(`/events/${eventId}`);
+    }
 
     return (
         <Swiper
