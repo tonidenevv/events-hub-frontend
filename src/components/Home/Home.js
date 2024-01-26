@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import eventImage from '../../assets/event-image.jpg';
 import Typed from 'react-typed';
 
@@ -8,6 +8,9 @@ const Home = () => {
         backgroundSize: 'cover',
         backgroundPosition: '70% 80%',
     }
+
+    const navigate = useNavigate();
+
     return (
         <>
             <div className="text-white" style={backgroundImageStyle}>
@@ -19,9 +22,7 @@ const Home = () => {
                             events, all around the world
                         </h1>
                         <p className="text-lg text-gray-200 font-semibold">All events worldwide in just one place. Host and find events through the comfort of your home and enjoy socializing with like-minded people.</p>
-                        <Link className="lg:w-32 w-50 mb-14 mt-2" to="/events">
-                            <button className="rounded-lg font-semibold bg-gradient-to-r from-red-500 to-orange-600 hover:bg-gradient-to-r  py-3 px-4 hover:from-orange-600 hover:to-red-500 ease-in-out duration-75">View Events</button>
-                        </Link>
+                        <button onClick={() => navigate('/events')} className="rounded-lg h-12 w-32 mb-14 mt-2 font-semibold bg-gradient-to-r from-red-500 to-orange-600 hover:bg-gradient-to-r  py-3 px-4 hover:from-orange-600 hover:to-red-500 ease-in-out duration-75">View Events</button>
                     </div>
                 </div>
             </div>

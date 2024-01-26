@@ -16,7 +16,7 @@ const LargeDevicesInfoContainer = ({ handleAttend, isAttending, attendingCount, 
             </div>
             <div className="flex flex-col items-center justify-center">
                 <button onClick={handleAttend} disabled={isOwner} className={attendButtonClasses}>{isOwner ? 'You are the creator of the event!' : hasPassed ? 'Event has already passed' : isAttending ? 'Stop Attending' : 'Attend'}</button>
-                <div className="font-semibold text-lg mt-1 m-3">{hasPassed ? `${attendingCount} people attended.` : !attendingCount && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
+                <div className="font-semibold text-lg mt-1 m-3">{hasPassed ? `${attendingCount} ${attendingCount === 1 ? 'person' : 'people'} attended.` : !attendingCount && !isOwner ? 'Be the first one to attend!' : `Currently ${attendingCount} attending!`}</div>
             </div>
         </div>
     )
