@@ -15,6 +15,7 @@ import DeleteButton from "./DeleteButton/DeleteButton";
 import EditButton from "./EditButton/EditButton";
 import CommentSection from "./CommentSection/CommentSection";
 import ProfileModal from "./ProfileModal/ProfileModal";
+import shouldHideOverflow from "../../helpers/shouldHideOverflow";
 
 const EventDetails = () => {
     const [event, setEvent] = useState({});
@@ -81,13 +82,20 @@ const EventDetails = () => {
 
     const showProfileModal = (userId) => {
         setSelectedModalUserId(userId);
+        shouldHideOverflow(true);
         setProfileModal(true);
     }
 
     const handleCloseModal = (e) => {
-        if (e === 'close') return setProfileModal(false);
+        if (e === 'close') {
+            shouldHideOverflow(false);
+            return setProfileModal(false);
+        }
 
-        if (e.target.id === 'close' || e.target.id === 'backdrop') setProfileModal(false);
+        if (e.target.id === 'close' || e.target.id === 'backdrop') {
+            shouldHideOverflow(false);
+            setProfileModal(false);
+        }
     }
 
     return (

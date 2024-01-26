@@ -3,6 +3,7 @@ import { Navigation, A11y, EffectCoverflow } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import shouldHideOverflow from '../../../../helpers/shouldHideOverflow';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -15,6 +16,7 @@ const Slider = ({ events, handleCloseModal }) => {
 
     const handleEventClick = (eventId) => {
         handleCloseModal('close');
+        shouldHideOverflow(false);
         navigate(`/events/${eventId}`);
     }
 
