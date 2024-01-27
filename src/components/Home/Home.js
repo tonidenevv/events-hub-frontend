@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import eventImage from '../../assets/event-image.jpg';
 import Typed from 'react-typed';
 

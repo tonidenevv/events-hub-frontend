@@ -11,6 +11,7 @@ import Create from "./components/Create/Create";
 import Events from "./components/Events/Events";
 import EventDetails from "./components/EventDetails/EventDetails";
 import NotFound from "./components/NotFound/NotFound";
+import EditEvent from "./components/EditEvent/EditEvent";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
               <Route path="/create" element={<Create />} />
               <Route path="/events" element={<Events />} />
               <Route path="/events/:eventId" element={<EventDetails />} />
+              <Route path="/events/:eventId/edit" element={<EditEvent />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

@@ -107,8 +107,8 @@ const EventDetails = () => {
                 </div>
                 {isOwner &&
                     <div className="flex items-center lg:gap-32 gap-16 justify-center mt-8">
-                        <EditButton />
-                        <DeleteButton />
+                        <EditButton eventId={event._id} />
+                        <DeleteButton eventId={event._id} />
                     </div>
                 }
                 <div className="grid lg:grid-cols-8 mt-10 grid-cols-1">

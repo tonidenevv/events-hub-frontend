@@ -31,3 +31,14 @@ export const attend = (token, eventId) => {
     })
         .then(res => responseHandler(res));
 }
+
+export const edit = (data, token, eventId) => {
+    return fetch(`${BASE_URL}/${eventId}/edit`, {
+        method: 'PUT',
+        headers: {
+            Authorize: token,
+        },
+        body: data,
+    })
+        .then(res => responseHandler(res));
+}
