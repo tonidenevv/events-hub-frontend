@@ -29,6 +29,7 @@ const EditEvent = () => {
     const [eventDate, setEventDate] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [formattedDate, setFormattedDate] = useState('');
+    const [initialDate, setInitialDate] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const fileInputRef = useRef(null);
     const navigate = useNavigate();
@@ -66,6 +67,7 @@ const EditEvent = () => {
                 });
                 setEventDate(res.eventDate);
                 setFormattedDate(format(res.eventDate, "MM/dd/yyyy"));
+                setInitialDate(format(res.eventDate, "MM/dd/yyyy"));
             })
             .catch(err => {
                 setIsLoading(false);
@@ -109,11 +111,11 @@ const EditEvent = () => {
         formData.append('file', selectedFile);
         formData.append('eventDate', eventDate);
 
-        eventService.createOne(formData, user.token)
+        eventService.edit(formData, user.token, eventId)
             .then(res => {
                 if (res.message) return navigate('/');
                 setIsLoading(false);
-                showToast('Successfully created an event!');
+                showToast('Successfully edited an event!');
                 navigate(`/events/${res._id}`);
             })
             .catch(err => {
@@ -139,7 +141,7 @@ const EditEvent = () => {
             };
         });
 
-        if (!hasChanged) return true;
+        if (!hasChanged && !selectedFile && formattedDate === initialDate) return true;
 
         if (errorsAsBooleans.some(x => x === true)) return true;
 
