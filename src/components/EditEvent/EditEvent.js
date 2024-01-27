@@ -11,7 +11,6 @@ import * as eventService from '../../services/eventService';
 import Spinner from "../Spinner/Spinner";
 
 const EditEvent = () => {
-    const [event, setEvents] = useState({});
     const [values, setValues] = useState({
         title: '',
         description: '',
