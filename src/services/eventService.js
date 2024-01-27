@@ -42,3 +42,13 @@ export const edit = (data, token, eventId) => {
     })
         .then(res => responseHandler(res));
 }
+
+export const del = (eventId, token) => {
+    return fetch(`${BASE_URL}/${eventId}/delete`, {
+        method: 'DELETE',
+        headers: {
+            Authorize: token,
+        }
+    })
+        .then(res => responseHandler(res));
+}

@@ -16,6 +16,7 @@ import EditButton from "./EditButton/EditButton";
 import CommentSection from "./CommentSection/CommentSection";
 import ProfileModal from "./ProfileModal/ProfileModal";
 import shouldHideOverflow from "../../helpers/shouldHideOverflow";
+import EventDeleteModal from "./EventDeleteModal/EventDeleteModal";
 
 const EventDetails = () => {
     const [event, setEvent] = useState({});
@@ -29,6 +30,7 @@ const EventDetails = () => {
     const [attendingCount, setAttendingCount] = useState(0);
     const [profileModal, setProfileModal] = useState(false);
     const [selectedModalUserId, setSelectedModalUserId] = useState('');
+    const [deleteModal, setDeleteModal] = useState(false);
 
     const { showToast } = useContext(ToastContext);
     const { user } = useContext(AuthContext);
@@ -86,7 +88,7 @@ const EventDetails = () => {
         setProfileModal(true);
     }
 
-    const handleCloseModal = (e) => {
+    const handleCloseProfileModal = (e) => {
         if (e === 'close') {
             shouldHideOverflow(false);
             return setProfileModal(false);
@@ -98,17 +100,30 @@ const EventDetails = () => {
         }
     }
 
+    const showDeleteModal = () => {
+        shouldHideOverflow(true);
+        setDeleteModal(true);
+    }
+
+    const handleDeleteModalClose = (e) => {
+        if (e?.target?.id === 'close' || e?.target?.id === 'backdrop' || e === 'deleted') {
+            shouldHideOverflow(false);
+            setDeleteModal(false);
+        }
+    }
+
     return (
         isLoading ? <Spinner /> :
             <>
-                {profileModal && <ProfileModal handleCloseModal={handleCloseModal} userId={selectedModalUserId} showToast={showToast} />}
+                {deleteModal && <EventDeleteModal token={user.token} eventId={event._id} eventTitle={event.title} showToast={showToast} handleDeleteModalClose={handleDeleteModalClose} />}
+                {profileModal && <ProfileModal handleCloseProfileModal={handleCloseProfileModal} userId={selectedModalUserId} showToast={showToast} />}
                 <div className="flex justify-center relative">
                     <TitleImageField title={event.title} image={event.imageUrl} />
                 </div>
                 {isOwner &&
                     <div className="flex items-center lg:gap-32 gap-16 justify-center mt-8">
                         <EditButton eventId={event._id} />
-                        <DeleteButton eventId={event._id} />
+                        <DeleteButton showDeleteModal={showDeleteModal} />
                     </div>
                 }
                 <div className="grid lg:grid-cols-8 mt-10 grid-cols-1">

@@ -7,7 +7,7 @@ import Slider from "./Slider/Slider";
 import { format } from 'date-fns'
 
 
-const ProfileModal = ({ userId, showToast, handleCloseModal }) => {
+const ProfileModal = ({ userId, showToast, handleCloseProfileModal }) => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
@@ -16,7 +16,6 @@ const ProfileModal = ({ userId, showToast, handleCloseModal }) => {
     useEffect(() => {
         userService.getBasicInfo(userId)
             .then(res => {
-                console.log(res);
                 setIsLoading(false);
                 setUser(res);
             })
@@ -28,7 +27,7 @@ const ProfileModal = ({ userId, showToast, handleCloseModal }) => {
     }, [showToast, navigate, userId]);
 
     return (
-        <div id="backdrop" onClick={handleCloseModal} className="fixed z-50 inset-0 flex items-center justify-center bg-opacity-30 backdrop-blur-sm">
+        <div id="backdrop" onClick={handleCloseProfileModal} className="fixed z-50 inset-0 flex items-center justify-center bg-opacity-30 backdrop-blur-sm">
             {isLoading ? <Spinner /> :
                 <div className="bg-slate-100 lg:w-[36rem] w-80 h-[42rem] lg:h-[43rem] border-2 flex flex-col items-center relative border-black rounded-lg">
                     <button id="close" className="right-3 top-3 absolute hover:text-gray-600"><CloseLogo /></button>
@@ -39,11 +38,11 @@ const ProfileModal = ({ userId, showToast, handleCloseModal }) => {
                     <div className="mt-1.5">Member since {format(user.createdAt, 'dd/MM/yyyy')}</div>
                     <div className="font-semibold text-center lg:text-3xl mt-3 text-2xl">Created Events</div>
                     {user.createdEvents.length === 0 ? <div className="font-semibold text-center text-xl lg:text-2xl mt-8">No Created Events...</div> :
-                        <Slider handleCloseModal={handleCloseModal} events={user.createdEvents} />
+                        <Slider handleCloseProfileModal={handleCloseProfileModal} events={user.createdEvents} />
                     }
                     <div className="font-semibold text-center lg:text-3xl mt-2 text-2xl">Attending</div>
                     {user.attending.length === 0 ? <div className="font-semibold text-center text-xl lg:text-2xl mt-8">Not Attending To Any Events...</div> :
-                        <Slider handleCloseModal={handleCloseModal} events={user.attending} />
+                        <Slider handleCloseProfileModal={handleCloseProfileModal} events={user.attending} />
                     }
                 </div>
             }

@@ -10,12 +10,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Slider = ({ events, handleCloseModal }) => {
+const Slider = ({ events, handleCloseProfileModal }) => {
 
     const navigate = useNavigate();
 
     const handleEventClick = (eventId) => {
-        handleCloseModal('close');
+        handleCloseProfileModal('close');
         shouldHideOverflow(false);
         navigate(`/events/${eventId}`);
     }
