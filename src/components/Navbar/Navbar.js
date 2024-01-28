@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import * as userService from '../../services/userService';
 
 const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
     const dropdownRef = useRef(null);
 
     const { user } = useContext(AuthContext);
@@ -26,6 +28,19 @@ const Navbar = () => {
         }
     }, []);
 
+    const handleSearchChange = (e) => {
+        setSearchValue(e.target.value);
+
+        userService.getSearched(e.target.value)
+            .then(res => {
+                if (res.message) return;
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
     return (
         <nav className="bg-gray-200 z-10 sticky top-0">
             <div className="max-w-7x1 mx-auto p-4">
@@ -47,6 +62,9 @@ const Navbar = () => {
                                 <Link to="/register" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-300 rounded-lg">Register</Link>
                             </>
                         }
+                    </div>
+                    <div className="hidden lg:flex lg:px-6 xl:px-32 2xl:px-60">
+                        <input value={searchValue} onChange={handleSearchChange} placeholder="Search Users..." className="border-2 border-black rounded-2xl focus:outline-none focus:border-blue-500 p-2 lg:w-72 xl:w-80" type="text" name="userSearch" id="userSearch" />
                     </div>
                     {user ?
                         <div className="flex ml-auto lg:mr-10 relative items-center">

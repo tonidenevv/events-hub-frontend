@@ -35,3 +35,8 @@ export const getBasicInfo = (userId) => {
     return fetch(`${BASE_URL}/${userId}/basic`)
         .then(res => responseHandler(res));
 }
+
+export const getSearched = (searchValue) => {
+    return fetch(`${BASE_URL}?username=${searchValue}`)
+        .then(res => responseHandler(res));
+}
