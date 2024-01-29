@@ -2,11 +2,15 @@ import { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import * as userService from '../../services/userService';
+import SearchResults from "./SearchResults/SearchResults";
 
 const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
+    const [showSearchResults, setShowSearchResults] = useState(false);
     const [searchValue, setSearchValue] = useState('');
+    const [foundUsers, setFoundUsers] = useState([]);
     const dropdownRef = useRef(null);
+    const [isSearchLoading, setIsSearchLoading] = useState(false);
 
     const { user } = useContext(AuthContext);
 
@@ -14,29 +18,40 @@ const Navbar = () => {
         setShowDropdown(prev => !prev);
     }
 
-    const handleClickOutside = (e) => {
+    const handleClickOutsideDropDown = (e) => {
         if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
             setShowDropdown(false);
         }
     }
 
+    const handleSearchResultsHide = (e) => {
+        if (e.target.id !== 'searchInput') setShowSearchResults(false);
+    }
+
     useEffect(() => {
-        document.addEventListener('click', handleClickOutside);
+        document.addEventListener('click', handleClickOutsideDropDown);
+        document.addEventListener('click', handleSearchResultsHide);
 
         return () => {
-            document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener('click', handleClickOutsideDropDown);
+            document.removeEventListener('click', handleSearchResultsHide);
         }
     }, []);
 
     const handleSearchChange = (e) => {
         setSearchValue(e.target.value);
+        setIsSearchLoading(true);
+
+        if (searchValue.length > 0) setShowSearchResults(true);
 
         userService.getSearched(e.target.value)
             .then(res => {
+                setIsSearchLoading(false);
                 if (res.message) return;
-                console.log(res);
+                setFoundUsers(res);
             })
             .catch(err => {
+                setIsSearchLoading(false);
                 console.log(err);
             })
     }
@@ -63,8 +78,11 @@ const Navbar = () => {
                             </>
                         }
                     </div>
-                    <div className="hidden lg:flex lg:px-6 xl:px-32 2xl:px-60">
-                        <input value={searchValue} onChange={handleSearchChange} placeholder="Search Users..." className="border-2 border-black rounded-2xl focus:outline-none focus:border-blue-500 p-2 lg:w-72 xl:w-80" type="text" name="userSearch" id="userSearch" />
+                    <div className="hidden lg:flex relative flex-col lg:px-6 xl:px-32 2xl:px-60">
+                        <input id="searchInput" value={searchValue} onChange={handleSearchChange} placeholder="Search Users..." className="border-2 border-black rounded-2xl focus:outline-none focus:border-blue-500 p-2 lg:w-72 xl:w-80" type="text" name="userSearch" />
+                        <div className="absolute top-11 2xl:w-80 lg:w-72">
+                            {searchValue && showSearchResults && <SearchResults users={foundUsers} setSearchValue={setSearchValue} isSearchLoading={isSearchLoading} />}
+                        </div>
                     </div>
                     {user ?
                         <div className="flex ml-auto lg:mr-10 relative items-center">
