@@ -39,7 +39,7 @@ const Slider = ({ events, handleCloseProfileModal }) => {
         >
             {events.map((x) => (
                 <SwiperSlide key={x._id}>
-                    <img onClick={() => handleEventClick(x._id)} className='w-50 h-48 cursor-pointer hover:brightness-75' src={x.imageUrl} alt="event" />
+                    <img onClick={() => handleEventClick(x._id)} className='w-64 h-36 lg:h-48 cursor-pointer hover:brightness-75' src={x.imageUrl} alt="event" />
                 </SwiperSlide>
             ))}
         </Swiper>

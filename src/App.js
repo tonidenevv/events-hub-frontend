@@ -12,6 +12,7 @@ import Events from "./components/Events/Events";
 import EventDetails from "./components/EventDetails/EventDetails";
 import NotFound from "./components/NotFound/NotFound";
 import EditEvent from "./components/EditEvent/EditEvent";
+import Profile from "./components/Profile/Profile";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
               <Route path="/events" element={<Events />} />
               <Route path="/events/:eventId" element={<EventDetails />} />
               <Route path="/events/:eventId/edit" element={<EditEvent />} />
+              <Route path="/profile/:userId" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

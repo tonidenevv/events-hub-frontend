@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import * as userService from '../../services/userService';
 import SearchResults from "./SearchResults/SearchResults";
-import SearchLogo from '../svg/SearchLogo';
 
 const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -40,15 +39,18 @@ const Navbar = () => {
     }, []);
 
     const handleSearchChange = (e) => {
-        setSearchValue(e.target.value);
         setIsSearchLoading(true);
 
-        if (searchValue.length > 0) setShowSearchResults(true);
+        setSearchValue(e.target.value);
+
+        if (!e.target.value) return;
+
 
         userService.getSearched(e.target.value)
             .then(res => {
                 setIsSearchLoading(false);
                 if (res.message) return;
+                setShowSearchResults(true);
                 setFoundUsers(res);
             })
             .catch(err => {
@@ -79,9 +81,6 @@ const Navbar = () => {
                             </>
                         }
                     </div>
-                    {/* <div className="lg:hidden flex items-center ml-14">
-                        <SearchLogo />
-                    </div> */}
                     <div className=" md:mr-2 lg:flex relative flex-col items-center lg:px-6 xl:px-32 2xl:px-60">
                         <input id="searchInput" value={searchValue} onChange={handleSearchChange} placeholder="Search Users..." className="border-2 border-black rounded-2xl focus:outline-none focus:border-blue-500 p-2 md:w-50 lg:w-72 w-32 ml-8 lg:ml-0 xl:w-80" type="text" name="userSearch" />
                         <div className="absolute top-12 lg:top-11 2xl:w-80 w-48 lg:w-72">
@@ -94,7 +93,7 @@ const Navbar = () => {
                             <div className={`absolute right-0 w-32 lg:h-28 h-36 flex flex-col justify-evenly top-full mt-4 rounded-md py-2 px-4 bg-slate-800 shadow-md ${!showDropdown && 'hidden'}`}>
                                 <Link to="/events" className="lg:hidden md:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Events</Link>
                                 <Link to="/create" className="lg:hidden md:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Create</Link>
-                                <Link to="/profile" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">My Profile</Link>
+                                <Link to={`/profile/${user._id}`} className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">My Profile</Link>
                                 <Link to="/settings" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Settings</Link>
                                 <Link to="/logout" className="block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Sign Out</Link>
                             </div>

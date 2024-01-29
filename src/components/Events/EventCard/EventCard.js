@@ -33,9 +33,7 @@ const EventCard = ({ event }) => {
         return `${daysLeft} days left!`
     }
 
-    const handleNavigate = () => {
-        navigate(`/events/${event._id}`);
-    }
+    const handleNavigate = () => navigate(`/events/${event._id}`);
 
     return (
         <div onClick={handleNavigate} className="flex flex-col items-center justify-center relative rounded-2xl">

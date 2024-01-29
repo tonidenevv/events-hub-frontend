@@ -29,7 +29,7 @@ const ToggleSwitch = ({ handleSwitch }) => {
                 <span
                     className={`flex items-center justify-center text-center bg-blue-600 border-blue-500 rounded-full h-8 w-8 shadow-md transform transition-transform duration-300 ease-in-out ${isChecked ? 'translate-x-9' : 'translate-x-0'
                         }`}
-                >{isChecked ? <WarningLogo size={6} color={'black'} /> : <SettingsLogo />}</span>
+                >{isChecked ? <WarningLogo size={6} color={'black'} /> : <SettingsLogo size={5} />}</span>
             </label>
         </div>
     )
