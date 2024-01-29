@@ -3,7 +3,7 @@ import Spinner from '../../Spinner/Spinner';
 
 const SearchResults = ({ users, isSearchLoading, setSearchValue }) => {
     return (
-        <div className="bg-white flex flex-col border-2 border-black w-full rounded-xl max-h-96 overflow-y-auto">
+        <div className="bg-white flex flex-col border-2 border-black w-full max-h-96 overflow-y-auto">
             {isSearchLoading ? <div className="flex mb-10 justify-center"><Spinner /></div> :
                 users.length === 0 ? <div className="font-semibold p-1">No users found...</div> :
                     users.map(x =>

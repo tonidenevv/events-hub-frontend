@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import * as userService from '../../services/userService';
 import SearchResults from "./SearchResults/SearchResults";
+import SearchLogo from '../svg/SearchLogo';
 
 const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -60,12 +61,12 @@ const Navbar = () => {
         <nav className="bg-gray-200 z-10 sticky top-0">
             <div className="max-w-7x1 mx-auto p-4">
                 <div className="flex h-10">
-                    <div className="flex w-16 lg:ml-5 ml-10 justify-between items-center">
+                    <div className="flex w-16 lg:ml-5 justify-between items-center">
                         <Link to="/">
                             <img className="hover:bg-slate-300 rounded-full p-1 ease-in-out duration-150" src="/logo.png" alt="The Event Hub" />
                         </Link>
                     </div>
-                    <div className="hidden md:flex ml-20 items-center gap-14">
+                    <div className="hidden md:flex md:ml-6 lg:ml-20 items-center gap-14">
                         <Link to="/" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-300 rounded-lg">Home</Link>
                         <Link to="/events" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-300 rounded-lg">Events</Link>
                         {user
@@ -78,9 +79,12 @@ const Navbar = () => {
                             </>
                         }
                     </div>
-                    <div className="hidden lg:flex relative flex-col lg:px-6 xl:px-32 2xl:px-60">
-                        <input id="searchInput" value={searchValue} onChange={handleSearchChange} placeholder="Search Users..." className="border-2 border-black rounded-2xl focus:outline-none focus:border-blue-500 p-2 lg:w-72 xl:w-80" type="text" name="userSearch" />
-                        <div className="absolute top-11 2xl:w-80 lg:w-72">
+                    {/* <div className="lg:hidden flex items-center ml-14">
+                        <SearchLogo />
+                    </div> */}
+                    <div className=" md:mr-2 lg:flex relative flex-col items-center lg:px-6 xl:px-32 2xl:px-60">
+                        <input id="searchInput" value={searchValue} onChange={handleSearchChange} placeholder="Search Users..." className="border-2 border-black rounded-2xl focus:outline-none focus:border-blue-500 p-2 md:w-50 lg:w-72 w-32 ml-8 lg:ml-0 xl:w-80" type="text" name="userSearch" />
+                        <div className="absolute top-12 lg:top-11 2xl:w-80 w-48 lg:w-72">
                             {searchValue && showSearchResults && <SearchResults users={foundUsers} setSearchValue={setSearchValue} isSearchLoading={isSearchLoading} />}
                         </div>
                     </div>
