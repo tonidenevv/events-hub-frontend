@@ -1,7 +1,7 @@
 import { differenceInCalendarDays, differenceInSeconds, differenceInMinutes, differenceInWeeks, differenceInMonths, differenceInYears, differenceInHours } from "date-fns";
 import Like from "./Like/Like";
 
-const Comment = ({ comment, user, showProfileModal }) => {
+const Comment = ({ comment, user, showProfileModal, changeLikeCount }) => {
     const { _ownerId: creator } = comment;
 
     const timeSinceComment = (commentCreatedAt) => {
@@ -39,7 +39,7 @@ const Comment = ({ comment, user, showProfileModal }) => {
                     </div>
                     <div className="text-lg font-normal">{comment.commentText}</div>
                 </div>
-                <Like user={user} comment={comment} />
+                <Like user={user} changeLikeCount={changeLikeCount} comment={comment} />
             </div>
         </>
     )

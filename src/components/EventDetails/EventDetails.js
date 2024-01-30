@@ -66,7 +66,7 @@ const EventDetails = () => {
             })
     }, [eventId, navigate, showToast, user?._id]);
 
-    const handleComment = (commentInfo) => setComments(old => [commentInfo, ...old]);
+    // const handleComment = (commentInfo) => setComments(old => [commentInfo, ...old]);
 
     const handleAttend = () => {
         if (!user) return navigate('/login');
@@ -135,7 +135,7 @@ const EventDetails = () => {
                     </div>
                     <LargeDevicesInfoContainer handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} ticketPrice={event.ticketPrice} date={date} />
                 </div>
-                <CommentSection comments={comments} showProfileModal={showProfileModal} handleComment={handleComment} event={event} />
+                <CommentSection initialComments={comments} showProfileModal={showProfileModal} event={event} />
                 <DetailsFooter handleAttend={handleAttend} isAttending={isAttending} attendingCount={attendingCount} isOwner={isOwner} date={date} ticketPrice={event.ticketPrice} />
             </>
     )

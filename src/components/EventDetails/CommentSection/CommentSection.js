@@ -9,7 +9,8 @@ import { useContext } from "react";
 import Spinner from "../../Spinner/Spinner";
 import Comment from "./Comment/Comment";
 
-const CommentSection = ({ comments, event, handleComment, showProfileModal }) => {
+const CommentSection = ({ initialComments, event, handleComment, showProfileModal }) => {
+    const [comments, setComments] = useState(initialComments);
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +30,8 @@ const CommentSection = ({ comments, event, handleComment, showProfileModal }) =>
             .then(res => {
                 if (res.message) return;
                 setIsLoading(false);
-                handleComment(res);
+                // handleComment(res);
+                setComments(old => [res, ...old]);
                 setComment('');
             })
             .catch(err => {
@@ -46,6 +48,8 @@ const CommentSection = ({ comments, event, handleComment, showProfileModal }) =>
 
         if (e.target.value === 'recent') return comments.sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
     }
+
+    const changeLikeCount = (commentId, commentLikes) => setComments(old => old.map(x => x._id !== commentId ? x : { ...x, likes: commentLikes }));
 
     return (
         isLoading ? <Spinner /> :
@@ -68,7 +72,7 @@ const CommentSection = ({ comments, event, handleComment, showProfileModal }) =>
                 </select>
                 {comments?.length === 0
                     ? <NoComments />
-                    : <div className="grid grid-cols-1 mb-8">{comments?.map(x => <Comment showToast={showToast} showProfileModal={showProfileModal} user={user} comment={x} key={x._id} />)}</div>
+                    : <div className="grid grid-cols-1 mb-8">{comments?.map(x => <Comment showToast={showToast} changeLikeCount={changeLikeCount} showProfileModal={showProfileModal} user={user} comment={x} key={x._id} />)}</div>
                 }
             </div>
     )

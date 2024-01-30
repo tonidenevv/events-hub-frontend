@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { ToastContext } from "../../../../../contexts/ToastContext";
 
-const Like = ({ user, comment }) => {
+const Like = ({ user, comment, changeLikeCount }) => {
     const [likes, setLikes] = useState(comment.likes?.length);
     const [hasLiked, setHasLiked] = useState(false);
 
@@ -22,6 +22,7 @@ const Like = ({ user, comment }) => {
         commentService.like(user.token, comment._id)
             .then(res => {
                 setLikes(res.likes.length);
+                changeLikeCount(res._id, res.likes);
                 setHasLiked(res.likes.some(x => x === user._id));
             })
             .catch(err => {
