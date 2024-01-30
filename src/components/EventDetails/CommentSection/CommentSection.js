@@ -30,7 +30,6 @@ const CommentSection = ({ initialComments, event, handleComment, showProfileModa
             .then(res => {
                 if (res.message) return;
                 setIsLoading(false);
-                // handleComment(res);
                 setComments(old => [res, ...old]);
                 setComment('');
             })

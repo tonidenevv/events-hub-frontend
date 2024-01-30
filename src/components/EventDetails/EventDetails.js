@@ -66,8 +66,6 @@ const EventDetails = () => {
             })
     }, [eventId, navigate, showToast, user?._id]);
 
-    // const handleComment = (commentInfo) => setComments(old => [commentInfo, ...old]);
-
     const handleAttend = () => {
         if (!user) return navigate('/login');
 
