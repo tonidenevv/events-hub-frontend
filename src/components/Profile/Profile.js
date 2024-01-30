@@ -22,6 +22,7 @@ const Profile = () => {
     const { showToast } = useContext(ToastContext);
 
     useEffect(() => {
+        setIsLoading(true);
         userService.getBasicInfo(userId)
             .then(res => {
                 setIsLoading(false);
@@ -50,15 +51,16 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="lg:mt-8 mt-5 font-bold text-5xl">Created</div>
-                {currUser.createdEvents.length === 0 ? <div className="font-semibold h-52 text-xl mt-3">No Created Events...</div> :
-                    <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-14 mx-auto p-4 py-12">
+                {currUser.createdEvents.length === 0
+                    ? <div className="font-semibold lg:h-52 h-24 text-xl mt-3">No Created Events...</div>
+                    : <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-14 w-full p-4 py-12">
                         {currUser.createdEvents.map(x => <EventCard key={x._id} event={x} />)}
                     </div>
 
                 }
                 <div className="mt-5 font-bold text-5xl">Attending</div>
                 {currUser.attending.length === 0 ? <div className="font-semibold text-xl mt-3 mb-5">Not Attending Events...</div> :
-                    <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-14 mx-auto p-4 py-12">
+                    <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-14 w-full p-4 py-12">
                         {currUser.attending.map(x => <EventCard key={x._id} event={x} />)}
                     </div>
                 }

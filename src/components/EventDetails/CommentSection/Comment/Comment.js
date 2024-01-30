@@ -33,9 +33,9 @@ const Comment = ({ comment, user, showProfileModal }) => {
             <div className="flex items-center mt-5 mb-3">
                 <img onClick={() => showProfileModal(creator._id)} className="w-12 h-12 rounded-full mr-2 hover:brightness-75 cursor-pointer" src={creator.avatarUrl ? creator.avatarUrl : creator.gender === 'male' ? '/male.png' : '/female.png'} alt="avatar" />
                 <div className="flex lg:w-64 w-56 flex-col">
-                    <div className="text-base flex gap-7">
+                    <div className="text-base flex items-center gap-5">
                         <div className="font-semibold text-gray-950">{creator.username}</div>
-                        <div className="font-normal text-gray-700">{timeSinceComment(comment.creationDate)}</div>
+                        <div className="font-normal text-sm text-gray-700">{timeSinceComment(comment.creationDate)}</div>
                     </div>
                     <div className="text-lg font-normal">{comment.commentText}</div>
                 </div>
