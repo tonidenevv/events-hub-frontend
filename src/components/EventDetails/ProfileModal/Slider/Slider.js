@@ -26,9 +26,9 @@ const Slider = ({ events, handleCloseProfileModal }) => {
             className='w-full h-56 mt-3'
             modules={[Navigation, A11y, EffectCoverflow]}
             coverflowEffect={{
-                rotate: 25,
+                rotate: 0,
                 stretch: 0,
-                depth: 100,
+                depth: 20,
                 modifier: 1,
                 slideShadows: false,
             }}
@@ -39,7 +39,7 @@ const Slider = ({ events, handleCloseProfileModal }) => {
         >
             {events.map((x) => (
                 <SwiperSlide key={x._id}>
-                    <img onClick={() => handleEventClick(x._id)} className='w-64 h-36 lg:h-48 cursor-pointer hover:brightness-75' src={x.imageUrl} alt="event" />
+                    <img onClick={() => handleEventClick(x._id)} className='w-64 rounded-xl h-36 object-cover lg:h-48 cursor-pointer hover:brightness-75' src={x.imageUrl} alt="event" />
                 </SwiperSlide>
             ))}
         </Swiper>
