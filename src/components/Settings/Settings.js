@@ -23,8 +23,8 @@ const Settings = () => {
 
     const initialValues = useMemo(() => {
         return {
-            username: user.username,
-            email: user.email,
+            username: user?.username,
+            email: user?.email,
         }
     }, [user]);
 

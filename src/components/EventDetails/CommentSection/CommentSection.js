@@ -59,7 +59,7 @@ const CommentSection = ({ comments, event, handleComment, showProfileModal }) =>
                         <input type="text" className={`py-1.5 px-2 lg:w-96 w-64 border-2 text-base focus:outline-none focus:border-blue-500 ${error ? 'border-red-500' : 'border-black'} rounded-lg m-3 ml-0`} value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Write a comment..!" />
                         <button onClick={handleSubmit} className="absolute right-5 hover:text-green-500 rounded-full flex items-center justify-center top-0 bottom-0 text-sm"><Tick /></button>
                     </div>
-                    : <div className="text-base"><Link className="text-blue-500 mr-1" to="/login">Log in</Link>to be able to comment and like comments!</div>
+                    : <div className="text-base mb-2"><Link className="text-blue-500 mr-1" to="/login">Log in</Link>to be able to comment and like comments!</div>
                 }
                 <select value={sortBy} onChange={handleSort} className="text-base border-2 border-black rounded-lg" name="sorting" id="sorting">
                     <option name="sort" disabled value="sort">Sort Comments</option>
