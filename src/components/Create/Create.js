@@ -84,14 +84,12 @@ const Create = () => {
 
         eventService.createOne(formData, user.token)
             .then(res => {
-                console.log(`err: ${res}`);
                 if (res.message) return navigate('/');
                 setIsLoading(false);
                 showToast('Successfully created an event!');
                 navigate('/events');
             })
             .catch(err => {
-                console.log(err);
                 setIsLoading(false);
                 showToast('Something went wrong. Please try again later.', true);
                 navigate('/');

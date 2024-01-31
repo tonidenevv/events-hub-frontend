@@ -30,7 +30,6 @@ const Profile = () => {
                 setCurrUser(res);
             })
             .catch(err => {
-                console.log(err);
                 setIsLoading(false);
                 showToast('There was an error processing your request. Please try again later.', true);
                 navigate('/');
