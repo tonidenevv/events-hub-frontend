@@ -82,7 +82,7 @@ const Settings = () => {
         isLoading ? <Spinner /> :
             <div className="bg-gradient-to-r from-blue-50 to-blue-300 min-h-screen flex flex-col">
                 <h1 className="text-center lg:m-10 m-6 lg:text-5xl text-5xl mt-16 font-body font-semibold">Settings</h1>
-                <div className="relative text-center hover:shadow-2xl flex lg:flex-row flex-col items-center shadow-sm lg:flex-col-2 md:flex-col-2 border-black border-4 ease-in-out md:mx-36 justify-center duration-300 mt-6 bg-slate-100 lg:mx-60 mx-10 rounded-2xl py-20 lg:py-20">
+                <div className="relative text-center hover:shadow-2xl flex lg:flex-row flex-col items-center shadow-sm mb-10 lg:flex-col-2 md:flex-col-2 border-black border-4 ease-in-out md:mx-36 justify-center duration-300 mt-6 bg-slate-100 lg:mx-60 mx-10 rounded-2xl py-20 lg:py-20">
                     <ToggleSwitch handleSwitch={handleSwitch} />
                     {!isChecked
                         ? <MainPage currUser={currUser} fileUploadRef={fileUploadRef} handleChange={handleChange} image={image} values={values} initialValues={initialValues} selectedFile={selectedFile} />

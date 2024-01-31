@@ -65,19 +65,19 @@ const Navbar = () => {
                 <div className="flex h-10">
                     <div className="flex w-16 lg:ml-5 justify-between items-center">
                         <Link to="/">
-                            <img className="hover:bg-slate-300 rounded-full p-1 ease-in-out duration-150" src="/logo.png" alt="The Event Hub" />
+                            <img className="hover:bg-green-200 rounded-full p-1 ease-in-out duration-150" src="/logo.png" alt="The Event Hub" />
                         </Link>
                     </div>
                     <div className="hidden md:flex md:ml-6 lg:ml-20 items-center gap-14">
-                        <Link to="/" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-300 rounded-lg">Home</Link>
-                        <Link to="/events" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-300 rounded-lg">Events</Link>
+                        <Link to="/" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-green-200 rounded-lg">Home</Link>
+                        <Link to="/events" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-green-200 rounded-lg">Events</Link>
                         {user
                             ? <>
-                                <Link to="/create" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-300 rounded-lg">Create</Link>
+                                <Link to="/create" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-green-200 rounded-lg">Create</Link>
                             </>
                             : <>
-                                <Link to="/login" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-300 rounded-lg">Login</Link>
-                                <Link to="/register" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-slate-300 rounded-lg">Register</Link>
+                                <Link to="/login" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-green-200 rounded-lg">Login</Link>
+                                <Link to="/register" className="text-slate-700 font-semibold text-lg py-1 px-2 ease-in-out duration-300 hover:bg-green-200 rounded-lg">Register</Link>
                             </>
                         }
                     </div>

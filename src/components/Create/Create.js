@@ -23,6 +23,7 @@ const Create = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [formattedDate, setFormattedDate] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [fileTooLarge, setFileTooLarge] = useState(false);
     const fileInputRef = useRef(null);
     const navigate = useNavigate();
 
@@ -46,7 +47,15 @@ const Create = () => {
 
     const chooseImageClick = () => fileInputRef.current.click();
 
-    const handleSelectFile = (e) => setSelectedFile(e.target.files[0]);
+    const handleSelectFile = (e) => {
+        setFileTooLarge(false);
+
+        if (e.target.files[0]?.size <= 1024 * 1024) {
+            return setSelectedFile(e.target.files[0]);
+        }
+
+        if (e.target.files[0]) setFileTooLarge(true);
+    }
 
     const handleChange = (e) => {
         setValues(old => ({
@@ -75,12 +84,14 @@ const Create = () => {
 
         eventService.createOne(formData, user.token)
             .then(res => {
+                console.log(`err: ${res}`);
                 if (res.message) return navigate('/');
                 setIsLoading(false);
                 showToast('Successfully created an event!');
                 navigate('/events');
             })
             .catch(err => {
+                console.log(err);
                 setIsLoading(false);
                 showToast('Something went wrong. Please try again later.', true);
                 navigate('/');
@@ -98,6 +109,8 @@ const Create = () => {
 
         if (!selectedFile) return true;
 
+        if (fileTooLarge) return true;
+
         return false;
     }
 
@@ -113,7 +126,7 @@ const Create = () => {
                         <textarea onBlur={handleBlur} onChange={handleChange} value={values.description} name="description" className={`border-2 mt-0 m-3 shadow-2xl border-black focus:outline-none focus:border-blue-500 p-1 px-2 rounded-lg ${errors.description && 'border-red-500'}`} id="description" cols="22" rows="3" placeholder="Description..."></textarea>
                         <div className="text-center gap-4 mb-2 flex items-center justify-center">
                             <button onClick={toggleCalendar} className="border-2 border-black flex items-center bg-slate-500 p-1.5 px-2 rounded-lg text-white hover:bg-slate-700 ease-in-out duration-150">{eventDate ? formattedDate : 'Select Date'}</button>
-                            <input type="button" onClick={chooseImageClick} className="p-1.5 cursor-pointer border-2 border-black bg-blue-600 hover:bg-blue-800 ease-in-out duration-150 rounded-lg text-white" value={selectedFile ? 'Image Selected' : 'Choose An Image'} />
+                            <input type="button" onClick={chooseImageClick} className="p-1.5 cursor-pointer border-2 border-black bg-blue-600 hover:bg-blue-800 ease-in-out duration-150 rounded-lg text-white" value={fileTooLarge ? 'File Too Large' : selectedFile ? 'Image Selected' : 'Choose An Image'} />
                         </div>
                         {showCalendar && <Calendar onChange={setEventDate} minDate={new Date()} value={eventDate} />}
                         {errors.eventType && <div className="font-semibold text-red-500 text-center">Event type should be between 3 and 20 characters.</div>}
