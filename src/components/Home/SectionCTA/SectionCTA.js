@@ -3,7 +3,7 @@ import poolparty from '../../../assets/poolparty.png';
 const SectionCTA = () => {
     return (
         <div className="bg-[#E9F8F3B2] flex items-center justify-center mt-10 pb-24 lg:p-20 p-6">
-            <div className="lg:w-4/6 flex lg:flex-row flex-col gap-5">
+            <div className="lg:w-4/6 flex lg:flex-row flex-col gap-14 lg:gap-5">
                 <div className="flex items-center justify-center"><img src={poolparty} alt="pool guy" /></div>
                 <div className="flex flex-col gap-4 justify-center">
                     <h2 className='text-2xl font-bold'>Join <span className='text-[#20B486]'>The World's Largest</span> Events Hosting Platform Today</h2>
