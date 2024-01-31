@@ -22,7 +22,7 @@ const Hero = () => {
                         events, all around the world
                     </h1>
                     <p className="text-lg text-gray-200 font-semibold">All events worldwide in just one place. Host and find events through the comfort of your home and enjoy socializing with like-minded people.</p>
-                    <button onClick={() => navigate('/events')} className="rounded-lg mb-14 mt-2 font-semibold bg-gradient-to-r from-[#20B486] to-[#148b65] hover:bg-gradient-to-r  py-3 px-4 hover:from-[#148b65] hover:to-[#20B486]">View Events</button>
+                    <button onClick={() => navigate('/events')} className="rounded-lg w-44 mb-14 mt-2 font-semibold bg-gradient-to-r from-[#20B486] to-[#148b65] hover:bg-gradient-to-r  py-3 px-4 hover:from-[#148b65] hover:to-[#20B486]">View Events</button>
                 </div>
             </div>
         </div>
