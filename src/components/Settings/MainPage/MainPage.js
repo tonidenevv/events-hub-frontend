@@ -70,7 +70,7 @@ const MainPage = ({
             <>
                 <img
                     onClick={handleImageClick}
-                    className="lg:mt-8 rounded-full lg:w-48 hover:brightness-75 hover:shadow-2xl lg:h-48 w-32 h-32 shadow-lg cursor-pointer border-black"
+                    className="lg:mt-8 rounded-full object-cover lg:w-48 hover:brightness-75 hover:shadow-2xl lg:h-48 w-32 h-32 shadow-lg cursor-pointer border-black"
                     src={image ? image : currUser.avatarUrl ? currUser.avatarUrl : currUser.gender === 'male' ? '/male.png' : '/female.png'}
                     alt="Avatar"
                 />

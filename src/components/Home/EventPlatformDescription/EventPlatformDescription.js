@@ -1,7 +1,7 @@
 const EventPlatformDescription = () => {
     return (
         <div className="lg:ml-10 ml-4 mt-10 mb-10">
-            <h2 className="lg:text-5xl text-3xl font-bold lg:max-w-md">Your next event, made possible by The Events Hub</h2>
+            <h2 className="lg:text-5xl text-3xl font-bold lg:max-w-md">Your next event, made possible by <span className="text-[#20B486]">The Events Hub</span></h2>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mt-14">
                 <div>
                     <h3 className="font-bold text-xl mb-4 text-slate-800">Create Unforgettable Events</h3>

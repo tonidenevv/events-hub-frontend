@@ -41,7 +41,7 @@ const Profile = () => {
         isLoading ? <Spinner /> :
             <div className="flex flex-col items-center">
                 <div className="flex mt-4 gap-2 items-center">
-                    <img className="w-14 lg:w-20 lg:h-20 h-14 rounded-full" src={currUser.avatarUrl ? currUser.avatarUrl : currUser.gender === 'male' ? '/male.png' : '/female.png'} alt="avatar" />
+                    <img className="w-14 lg:w-20 lg:h-20 h-14 object-cover rounded-full" src={currUser.avatarUrl ? currUser.avatarUrl : currUser.gender === 'male' ? '/male.png' : '/female.png'} alt="avatar" />
                     <div>
                         <div className="font-bold text-4xl lg:text-5xl">{currUser.username}</div>
                         <div className="flex items-center mt-2 gap-1">

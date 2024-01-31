@@ -32,7 +32,7 @@ const ProfileModal = ({ userId, showToast, handleCloseProfileModal }) => {
                 <div className="bg-slate-100 lg:w-[36rem] w-80 h-[40rem] lg:h-[42rem] border-2 flex flex-col items-center relative border-black rounded-lg">
                     <button id="close" className="right-3 top-3 absolute hover:text-gray-600"><CloseLogo /></button>
                     <div className="flex gap-2 items-center mt-10">
-                        <img className="lg:w-16 lg:h-16 w-14 h-14 rounded-full" src={user.avatarUrl ? user.avatarUrl : user.gender === 'male' ? '/male.png' : '/female.png'} alt="" />
+                        <img className="lg:w-16 lg:h-16 w-14 h-14 object-cover rounded-full" src={user.avatarUrl ? user.avatarUrl : user.gender === 'male' ? '/male.png' : '/female.png'} alt="" />
                         <div className="font-semibold lg:text-5xl text-3xl">{user.username}</div>
                     </div>
                     <div className="mt-1.5">Member since {format(user.createdAt, 'dd/MM/yyyy')}</div>

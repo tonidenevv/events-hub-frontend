@@ -60,7 +60,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="bg-gray-200 z-10 sticky top-0">
+        <nav className="bg-green-100 z-10 sticky top-0">
             <div className="max-w-7x1 mx-auto p-4">
                 <div className="flex h-10">
                     <div className="flex w-16 lg:ml-5 justify-between items-center">
@@ -89,7 +89,7 @@ const Navbar = () => {
                     </div>
                     {user ?
                         <div className="flex ml-auto lg:mr-10 relative items-center">
-                            <img onClick={toggleDropdown} ref={dropdownRef} src={user.avatarUrl ? user.avatarUrl : (user.gender === 'male' ? `/male.png` : '/female.png')} className="w-12 h-12 mr-8 hover:brightness-75 cursor-pointer rounded-full" alt="Person" />
+                            <img onClick={toggleDropdown} ref={dropdownRef} src={user.avatarUrl ? user.avatarUrl : (user.gender === 'male' ? `/male.png` : '/female.png')} className="w-12 h-12 object-cover mr-8 hover:brightness-75 cursor-pointer rounded-full" alt="Person" />
                             <div className={`absolute right-0 w-32 lg:h-28 h-36 flex flex-col justify-evenly top-full mt-4 rounded-md py-2 px-4 bg-slate-800 shadow-md ${!showDropdown && 'hidden'}`}>
                                 <Link to="/events" className="lg:hidden md:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Events</Link>
                                 <Link to="/create" className="lg:hidden md:hidden block text-center font-semibold text-gray-200 hover:text-lg ease-in-out duration-150">Create</Link>

@@ -8,7 +8,7 @@ const SearchResults = ({ users, isSearchLoading, setSearchValue }) => {
                 users.length === 0 ? <div className="font-semibold p-1">No users found...</div> :
                     users.map(x =>
                         <Link onClick={() => setSearchValue('')} key={x._id} to={`/profile/${x._id}`} className="flex items-center p-1.5 gap-2 hover:bg-gray-200">
-                            <img className="w-10 h-10 rounded-full" src={x.avatarUrl ? x.avatarUrl : x.gender === 'male' ? '/male.png' : '/female.png'} alt="avatar" />
+                            <img className="w-10 object-cover h-10 rounded-full" src={x.avatarUrl ? x.avatarUrl : x.gender === 'male' ? '/male.png' : '/female.png'} alt="avatar" />
                             <div className="font-semibold">{x.username}</div>
                         </Link>
                     )
