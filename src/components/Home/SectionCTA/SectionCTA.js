@@ -8,7 +8,7 @@ const SectionCTA = () => {
                 <div className="flex flex-col gap-4 justify-center">
                     <h2 className='text-2xl font-bold'>Join <span className='text-[#20B486]'>The World's Largest</span> Events Hosting Platform Today</h2>
                     <p className=''>Start hosting and attending by registering for free</p>
-                    <Link to="/register" className='bg-[#20B486] mt-4 p-3 hover:bg-[#2c896b] ease-in-out duration-200 text-white font-semibold rounded-xl w-40 text-center'>Sign Up For Free</Link>
+                    <Link to="/register" className='bg-[#20B486] mt-4 p-3 hover:bg-[#2c896b] ease-in-out duration-200 text-white font-semibold rounded-xl w-52 text-center'>Sign Up For Free</Link>
                 </div>
             </div>
         </div>
