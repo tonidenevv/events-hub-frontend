@@ -24,13 +24,15 @@ const Register = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const [fileTooLarge, setFileTooLarge] = useState(false);
+
     const navigate = useNavigate();
 
     const { showToast } = useContext(ToastContext);
 
     const { handleAuth, user } = useContext(AuthContext);
 
-    const hasAnyErrors = (Object.values(errors).some(x => x === true) || Object.values(errors).length < 5);
+    const hasAnyErrors = (Object.values(errors).some(x => x === true) || Object.values(errors).length < 5 || fileTooLarge);
 
     useEffect(() => {
         if (user) return navigate('/', { replace: true });
@@ -51,7 +53,13 @@ const Register = () => {
     };
 
     const handleFileSelect = (e) => {
-        setSelectedFile(e.target.files[0]);
+        setFileTooLarge(false);
+
+        if (e.target.files[0]?.size <= 1024 * 1024) {
+            return setSelectedFile(e.target.files[0]);
+        }
+
+        if (e.target.files[0]) setFileTooLarge(true);
     };
 
     const handleBlur = (e) => {
@@ -130,7 +138,7 @@ const Register = () => {
                                 style={{ zIndex: '-1' }}
                             />
                             <span className="block text-center">
-                                {selectedFile ? 'Avatar Added' : 'Choose Avatar (Optional)'}
+                                {fileTooLarge ? 'File Too Large' : selectedFile ? 'Avatar Added' : 'Choose Avatar (Optional)'}
                             </span>
                         </label>
                         <input type="submit" disabled={hasAnyErrors} className={hasAnyErrors ? `bg-indigo-500 border-black border-1 px-5 cursor-not-allowed font-semibold border-2 text-center m-6 p-2 rounded-2xl` : `bg-slate-500 border-black border-1 px-5 cursor-pointer font-semibold ease-in-out duration-150 border-2 hover:bg-indigo-700 text-center m-6 p-2 rounded-2xl`} value="Register" />
