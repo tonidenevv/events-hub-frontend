@@ -1,5 +1,5 @@
 import responseHandler from "../helpers/responseHandler";
-const BASE_URL = 'http://localhost:5000/users';
+const BASE_URL = 'https://events-hub-backend.vercel.app/users';
 
 export const getOne = (userToken, userId) => {
     return fetch(`${BASE_URL}/${userId}`, {

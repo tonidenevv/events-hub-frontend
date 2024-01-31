@@ -1,6 +1,6 @@
 import responseHandler from "../helpers/responseHandler";
 
-const BASE_URL = 'http://localhost:5000/auth';
+const BASE_URL = 'https://events-hub-backend.vercel.app/auth';
 
 export const register = (data) => {
     return fetch(`${BASE_URL}/register`, {

@@ -1,5 +1,5 @@
 import responseHandler from "../helpers/responseHandler";
-const BASE_URL = 'http://localhost:5000/comments';
+const BASE_URL = 'https://events-hub-backend.vercel.app/comments';
 
 export const create = (accessToken, commentText, eventId) => {
     return fetch(BASE_URL, {
