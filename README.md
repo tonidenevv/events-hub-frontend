@@ -13,7 +13,16 @@ Deployed version of the full-stack application: https://events-hub-frontend.verc
 * Users can access user's profiles by using the search field or by clicking on a profile picture of a user in the event details tab.
 * Logged in users can access a settings page where they can change their profile picture, change their username, password or email, as well as delete their account.
 * Users can search events based on a keyword and filter them based on several criteria.
-* Users are able to directly upload an image using a file when they create or edit an event, or when they register an account or decide to change/add a profile picture in the settings tab. All images are sent to the back-end and then they are handled and stored in a Google Cloud Storage. 
+* Users are able to directly upload an image using a file when they create or edit an event, or when they register an account or decide to change/add a profile picture in the settings tab. All images are sent to the back-end and then they are handled and stored in a Google Cloud Storage.
+
+# Home Page
+![homepage](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/48aea380-f24f-46bd-b4ab-0392fa337051)
+![homepage1](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/fdef5b93-e866-43d6-b62a-ec1547545138)
+![homepage2](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/423d9a3c-cd5a-45d0-9585-88323582a39c)
+![homepage3](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/07618ab3-74a9-4f52-a7fa-e66c4c1dcaf7)
+![homepage4](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/0f66fdbb-be3a-45a3-b15e-b23e4c39bd92)
+![homepage5](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/fe8ca522-a39f-433d-ae8b-8d24defc5875)
+
 
 # Technologies
 * React
