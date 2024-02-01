@@ -18,13 +18,13 @@ const Comment = ({ comment, user, showProfileModal, changeLikeCount }) => {
         const daysDifference = differenceInCalendarDays(new Date(), commentCreatedAt);
         if (daysDifference < 7) return (`${daysDifference} ${daysDifference === 1 ? 'day' : 'days'} ago`);
 
-        const weeksDifference = differenceInWeeks(new Date(), commentCreatedAt);
+        const weeksDifference = daysDifference / 7;
         if (daysDifference < 31) return (`${weeksDifference} ${weeksDifference === 1 ? 'week' : 'weeks'} ago`);
 
-        const monthsDifference = differenceInMonths(new Date(), commentCreatedAt);
-        if (monthsDifference < 12) return (`${monthsDifference} ${monthsDifference === 1 ? 'month' : 'months'} ago`);
+        const monthsDifference = daysDifference / 31;
+        if (daysDifference < 365) return (`${monthsDifference} ${monthsDifference === 1 ? 'month' : 'months'} ago`);
 
-        const yearsDifference = differenceInYears(new Date(), commentCreatedAt)
+        const yearsDifference = daysDifference / 365;
         return (`${yearsDifference} ${yearsDifference === 1 ? 'year' : 'years'} ago`);
     }
 
