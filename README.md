@@ -16,11 +16,6 @@ Deployed version of the full-stack application: https://events-hub-frontend.verc
 * Users are able to directly upload an image using a file when they create or edit an event, or when they register an account or decide to change/add a profile picture in the settings tab. All images are sent to the back-end and then they are handled and stored in a Google Cloud Storage.
 
 # Home Page
-<p align="center">
-  <img src="![homepage](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/48aea380-f24f-46bd-b4ab-0392fa337051)" width="200" alt="Image 1">
-  <img src="![homepage1](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/fdef5b93-e866-43d6-b62a-ec1547545138)" width="200" alt="Image 2">
-  <img src=![homepage2](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/423d9a3c-cd5a-45d0-9585-88323582a39c) width="200" alt="Image 3">
-</p>
 ![homepage](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/48aea380-f24f-46bd-b4ab-0392fa337051)
 ![homepage1](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/fdef5b93-e866-43d6-b62a-ec1547545138)
 ![homepage2](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/423d9a3c-cd5a-45d0-9585-88323582a39c)
@@ -28,6 +23,25 @@ Deployed version of the full-stack application: https://events-hub-frontend.verc
 ![homepage4](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/0f66fdbb-be3a-45a3-b15e-b23e4c39bd92)
 ![homepage5](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/fe8ca522-a39f-433d-ae8b-8d24defc5875)
 
+# Events Page
+![filter](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/d9663292-6dc4-4374-a201-cf7a13c2c255)
+![eventspage](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/8346afb6-8b5e-4954-8180-574250df2e2f)
+![eventhover](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/da28ff28-a329-4332-b1b1-1534b9f81166)
+
+# Event Details
+![profilemodal](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/2af726df-c6d2-4b90-bf5a-b56a62ce4291)
+![eventdetailscomments](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/87110bbf-c163-4cf5-906e-a6fb3fb4bfa2)
+![eventdetails](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/b0ca1a75-dc7e-4544-8239-3394234c48f3)
+![deleteevent](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/a3b357b0-e91d-46b0-89a5-34be10e7b606)
+
+# User Search & Profile Page
+![usersearch](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/58b99cd5-2d25-454e-997b-4146c1fa8640)
+![profilepage](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/12692418-eba3-4689-b957-990b5126c430)
+
+# Create Event, Register & Settings
+![register](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/975cd1cc-21ce-450e-a012-2cc1ecc9d346)
+![create](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/b25b8c62-0b79-46b9-a69b-887517f1d392)
+![settings](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/f2e349e5-0e19-4902-9596-8ff2f8b366dd)
 
 # Technologies
 * React
