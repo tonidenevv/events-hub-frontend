@@ -16,6 +16,11 @@ Deployed version of the full-stack application: https://events-hub-frontend.verc
 * Users are able to directly upload an image using a file when they create or edit an event, or when they register an account or decide to change/add a profile picture in the settings tab. All images are sent to the back-end and then they are handled and stored in a Google Cloud Storage.
 
 # Home Page
+<p align="center">
+  <img src="![homepage](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/48aea380-f24f-46bd-b4ab-0392fa337051)" width="200" alt="Image 1">
+  <img src="![homepage1](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/fdef5b93-e866-43d6-b62a-ec1547545138)" width="200" alt="Image 2">
+  <img src=![homepage2](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/423d9a3c-cd5a-45d0-9585-88323582a39c) width="200" alt="Image 3">
+</p>
 ![homepage](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/48aea380-f24f-46bd-b4ab-0392fa337051)
 ![homepage1](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/fdef5b93-e866-43d6-b62a-ec1547545138)
 ![homepage2](https://github.com/tonidenevv/events-hub-frontend/assets/148529259/423d9a3c-cd5a-45d0-9585-88323582a39c)
